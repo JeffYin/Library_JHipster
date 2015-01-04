@@ -15,4 +15,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ReaderRepository extends JpaRepository<Reader, Long> {
 	//The implementation is implemented in Reader.java
 	public List<Reader> getByNameLike(final String partialName);
+
+	//The implementation is implemented in Reader.java
+	public List<Reader> getByHomePhoneLike(final String partialName);
+
+	//The implementation is implemented in Reader.java
+	public List<Reader> getByMobilePhoneLike(final String partialName);
 }

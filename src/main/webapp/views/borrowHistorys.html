@@ -27,15 +27,15 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="readerHomePhone">Home Phone</label>  
 		  <div class="col-md-4">
-		  	<input id="readerHomePhone" type="text" placeholder="" class="form-control input-md" ng-model="readerHomePhone" required>
+		  	<input id="readerHomePhone" type="text" placeholder="" class="form-control input-md" ng-model="readerHomePhone" ng-enter="getReaderByHomePhone();">
 		  </div>
 		</div>
 
 		<!-- Cell Phone -->
 		<div class="form-group">
-		  <label class="col-md-4 control-label" for="readerCellPhone">Cell Phone</label>  
+		  <label class="col-md-4 control-label" for="readerMobilePhone">Cell Phone</label>  
 		  <div class="col-md-4">
-		  	<input id="readerCellPhone" type="text" placeholder="" class="form-control input-md" ng-model="readerCellPhone" required>
+		  	<input id="readerMobilePhone" type="text" placeholder="" class="form-control input-md" ng-model="readerMobilePhone" ng-enter="getReaderByMobilePhone();">
 		  </div>
 		</div>
 		

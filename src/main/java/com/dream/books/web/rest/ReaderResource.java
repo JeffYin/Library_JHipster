@@ -54,7 +54,7 @@ public class ReaderResource {
     
     
     /**
-    * GET  /rest/readers -> get all the readers.
+    * GET  /rest/readers?name=xxxx -> get all the readers.
     */
    @RequestMapping(value = "/rest/readers", params={"name"},
            method = RequestMethod.GET,
@@ -63,6 +63,30 @@ public class ReaderResource {
    public List<Reader> getByName(@RequestParam String name) {
        log.debug("REST request to get all Readers that contains the given name.");
        return readerRepository.getByNameLike("%"+name+"%");
+   }
+
+   /**
+    * GET  /rest/readers?homePhone=xxx -> get all the readers whose phone number includes the given home phone number.
+    */
+   @RequestMapping(value = "/rest/readers", params={"homePhone"},
+		   method = RequestMethod.GET,
+		   produces = MediaType.APPLICATION_JSON_VALUE)
+   @Timed
+   public List<Reader> getByHomePhone(@RequestParam String homePhone) {
+	   log.debug("REST request to get all Readers that contains the given home phone No..");
+	   return readerRepository.getByHomePhoneLike("%"+homePhone+"%");
+   }
+
+   /**
+    * GET  /rest/readers?mobilePhone=xxx -> get all the readers whose phone number includes the given home phone number.
+    */
+   @RequestMapping(value = "/rest/readers", params={"mobilePhone"},
+		   method = RequestMethod.GET,
+		   produces = MediaType.APPLICATION_JSON_VALUE)
+   @Timed
+   public List<Reader> getByMobilePhone(@RequestParam String mobilePhone) {
+	   log.debug("REST request to get all Readers that contains the given mobile phone No..");
+	   return readerRepository.getByMobilePhoneLike("%"+mobilePhone+"%");
    }
     
 

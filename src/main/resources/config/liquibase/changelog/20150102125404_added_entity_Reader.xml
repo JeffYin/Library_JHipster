@@ -40,8 +40,8 @@
             <column name="id" value="2"/>
             <column name="permanent_no" value="0002"/>
             <column name="name" value="黄智奇"/>
-            <column name="home_phone" value="416-001-0023"/>
-            <column name="mobile_phone" value="647-333-8876"/>
+            <column name="home_phone" value="905-123-4567"/>
+            <column name="mobile_phone" value="647-444-8876"/>
             <column name="email" value="ck.wong@yahoo.ca"/>
             <column name="address" value="450 Dundas West. Toronto"/>
             <column name="post_code" value="A1M 2R3"/>

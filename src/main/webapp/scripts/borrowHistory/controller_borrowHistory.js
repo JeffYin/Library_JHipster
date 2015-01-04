@@ -9,6 +9,10 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         
         $scope.readerBarcode="";
         $scope.readerName="";
+        $scope.readerHomePhone="";
+        $scope.readerMobilePhone="";
+        
+        
         $scope.selectedReader = ""; 
         $scope.selectedReaderList="";
 
@@ -38,7 +42,7 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
 			});
         };
 
-        //Fetchh the read list which contains the given parameter. 
+      //Fetch the reader list which contains the given name. 
         $scope.getReaderByName = function() {
         	Reader.query({name: $scope.readerName},function(readers) {
         		$scope.selectedReaderList =readers;
@@ -47,6 +51,28 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         		}
         	});
         };
+        
+        
+        //Fetch the reader list which contains the given home number. 
+        $scope.getReaderByHomePhone = function() {
+        	Reader.query({homePhone: $scope.readerHomePhone},function(readers) {
+        		$scope.selectedReaderList =readers;
+        		if (readers.length==1) {
+        			$scope.selectedReader =readers[0];
+        		}
+        	});
+        };
+        
+        //Fetch the reader list which contains the given home number. 
+        $scope.getReaderByMobilePhone = function() {
+        	Reader.query({mobilePhone: $scope.readerMobilePhone},function(readers) {
+        		$scope.selectedReaderList =readers;
+        		if (readers.length==1) {
+        			$scope.selectedReader =readers[0];
+        		}
+        	});
+        };
+        
         
                
         
