@@ -1,0 +1,105 @@
+<div>
+
+    <div>
+	    <form class="form-horizontal">
+		<fieldset>
+		
+		<!-- Form Name -->
+		<legend>Reader Info</legend>
+		
+		<!-- Barcode -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="readerBarcode">Card Barcode</label>  
+		  <div class="col-md-4">
+		  	<input id="readerBarcode" type="text" placeholder="" class="form-control input-md" ng-model="readerBarcode" required ng-enter="getReaercardByBarcode();">
+		  </div>
+		</div>
+
+		<!-- Name -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="readerName">Name</label>  
+		  <div class="col-md-4">
+		  	<input id="readerName" type="text" placeholder="" class="form-control input-md" ng-model="readerName" required>
+		  </div>
+		</div>
+
+		<!-- Home Phone -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="readerHomePhone">Home Phone</label>  
+		  <div class="col-md-4">
+		  	<input id="readerHomePhone" type="text" placeholder="" class="form-control input-md" ng-model="readerHomePhone" required>
+		  </div>
+		</div>
+
+		<!-- Cell Phone -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="readerCellPhone">Cell Phone</label>  
+		  <div class="col-md-4">
+		  	<input id="readerCellPhone" type="text" placeholder="" class="form-control input-md" ng-model="readerCellPhone" required>
+		  </div>
+		</div>
+		
+		</fieldset>
+		
+		<fieldset>
+		 <legend> Bibliography Items</legend>
+
+		<div class="form-group">
+			<span class="help-block">{{readerCards.reader.name}}</span>  
+		</div>
+		
+		<!-- Text input-->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="itemBarcode">Scan Items</label>  
+		  <div class="col-md-4">
+		  <input id="itemBarcode" name="itemBarcode" type="text" placeholder="placeholder" class="form-control input-md" required="">
+		  </div>
+		</div>
+		
+		</fieldset>
+		</form>
+    
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>BorrowDate</th>
+                    <th>ReturnDate</th>
+                    <th>Cleared</th>
+                    <th>Comments</th>
+                    <th>item</th>
+                    <th>readerCard</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="borrowHistory in borrowHistorys">
+                    <td>{{borrowHistory.id}}</td>
+                    <td>{{borrowHistory.borrowDate}}</td>
+                    <td>{{borrowHistory.returnDate}}</td>
+                    <td>{{borrowHistory.cleared}}</td>
+                    <td>{{borrowHistory.comments}}</td>
+                    <td>{{borrowHistory.item.barcode}}</td>
+                    <td>{{borrowHistory.readerCard.barcode}}</td>
+                    <td>
+                        <button type="submit"
+                                ng-click="update(borrowHistory.id)"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span> Edit
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(borrowHistory.id)"
+                                class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span> Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

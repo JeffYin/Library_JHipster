@@ -1,0 +1,383 @@
+{
+    "global": {
+        "title": "books",
+        "browsehappy": "您目前使用<strong>过于老旧</strong>的浏览器, 建议您<a href=\"http://browsehappy.com/?locale=en\">升级浏览器</a>让您有更佳的上网体验.",
+        "menu": {
+            "home": "首页",
+            "entities": {
+                "main": "Entities"
+            },
+            "account": {
+                "main": "帐号",
+                "settings": "设定",
+                "password": "密码",
+                "sessions": "Sessions",
+                "tracker": "追踪使用者",
+                "metrics": "资源监控",
+                "health": "服务状态",
+                "configuration": "Configuration",
+                "logs": "记录",
+                "audits": "稽核",
+                "login": "登入",
+                "logout": "登出",
+                "apidocs": "API",
+                "register": "注册"
+            },
+            "admin": "管理",
+            "language":"语言",
+            "edit":"编辑",
+            "save":"保存",
+            "delete":"删除",
+            "cancel":"取消",
+            "barcode":"条码"
+        },
+        "form": {
+            "username": "帐号",
+            "username.placeholder": "您的帐号",
+            "newpassword": "新密码",
+            "newpassword.placeholder": "您的新密码",
+            "confirmpassword": "新密码确认",
+            "confirmpassword.placeholder": "确认您的新密码",
+            "email": "电子邮件",
+            "email.placeholder": "您的电子邮件"
+            
+        },
+        "messages": {
+            "info": {
+                "authenticated": "如果您要<a href=\"#/login\">登入</a>, 您可以使用预设帐号:<br/>- 管理者 (帐号=\"admin\"与密码=\"admin\") <br/>- 使用者 (帐号=\"user\"与密码=\"user\").",
+                "register": "您还没有帐号？<a href=\"#/register\">注册一个新帐号</a>"
+            },
+            "error": {
+                "dontmatch" : "您输入的密码与密码确认不符合!"
+            },
+            "validate": {
+                "newpassword": {
+                    "required": "您的密码是必填栏位.",
+                    "minlength": "您的密码长度至少要有5个字元",
+                    "maxlength": "您的密码长度不能超过50个字元",
+                    "strength": "密码强度:"
+                },
+                "confirmpassword": {
+                    "required": "您的密码确认是必填栏位.",
+                    "minlength": "您的密码确认长度至少要有5个字元",
+                    "maxlength": "您的密码确认长度不能超过50个字元"
+                },
+                "email": {
+                    "required": "您的电子邮件是必填栏位.",
+                    "invalid": "您的电子邮件格式格式不正确.",
+                    "minlength": "您的电子邮件长度至少要有5个字元",
+                    "maxlength": "您的电子邮件长度不能超过50个字元"
+                }
+            }
+        }
+    },
+    "main": {
+        "title": "欢迎, Java Hipster!",
+        "subtitle": "这里是首页",
+        "logged": {
+            "message": "您目前是以 \"{{username}}\" 帐号登入."
+        },
+        "question": "如果您有任何 JHipster 问题, 可以查阅下列资源:",
+        "link": {
+            "homepage": "JHipster 首页",
+            "stackoverflow": "Stack Overflow 上关于 JHipster 的讨论",
+            "bugtracker": "JHipster 的错误追踪",
+            "contact": "在 Twitter 上联络 @java_hipster"
+        },
+        "like": "如果您喜欢 JHipster, 请记得给我们一颗星星在",
+        "github": "Github"
+    },
+    "activate": {
+        "title": "启用",
+        "messages": {
+            "success": "<strong>您的帐号已启用.</strong> 请<a href=\"#/login\">登入</a>.",
+            "error": "<strong>您的帐号无法启用.</strong> 请重新注册."
+        }
+    },
+    "register": {
+        "title": "注册",
+        "form": {
+            "button": "注册"
+        },
+        "messages": {
+            "validate": {
+                "login": {
+                    "required": "您的帐号是必填栏位.",
+                    "minlength": "您的帐号长度至少要有1个字元",
+                    "maxlength": "您的帐号长度不能超过50个字元",
+                    "pattern": "Your login can only contain lower-case letters and digits"
+                }
+            },
+            "success": "<strong>注册成功!</strong> 请检查您的电子邮件.",
+            "error": {
+                "fail": "<strong>注册失败!</strong> 请稍后再试.",
+                "userexists": "<strong>帐号已经被注册!</strong> 请选择其他帐号.",
+                "emailexists": "<strong>E-mail is already in use!</strong> Please choose another one."
+            }
+        }
+    },
+    "login": {
+        "title": "验证",
+        "form": {
+            "password": "密码",
+            "password.placeholder": "您的密码",
+            "rememberme": "自动登入",
+            "button": "登入"
+        },
+        "messages": {
+            "error": {
+                "authentication": "<strong>验证失败!</strong> 请检查您的认证, 并重试一次."
+            }
+        }
+    },
+    "settings": {
+        "title": "[<b>{{username}}</b>] 的使用者设定",
+        "form": {
+            "firstname": "名字",
+            "firstname.placeholder": "您的名字",
+            "lastname": "姓氏",
+            "lastname.placeholder": "您的姓氏",
+            "button": "储存"
+        },
+        "messages": {
+            "error": {
+                "fail": "<strong>发生错误!</strong> 设定无法被储存.",
+                "emailexists": "<strong>E-mail is already in use!</strong> Please choose another one."
+            },
+            "success": "<strong>设定储存成功!</strong>",
+            "validate": {
+                "firstname": {
+                    "required": "您的名字是必填栏位.",
+                    "minlength": "您的名字长度至少要有1个字元",
+                    "maxlength": "您的名字长度不能超过50个字元"
+                },
+                "lastname": {
+                    "required": "您的姓氏是必填栏位.",
+                    "minlength": "您的姓氏长度至少要有1个字元",
+                    "maxlength": "您的姓氏长度不能超过50个字元"
+                }
+            }
+        }
+    },
+    "password": {
+        "title": "[<b>{{username}}</b>] 的密码",
+        "form": {
+            "button": "储存"
+        },
+        "messages": {
+            "error":  "<strong>发生错误!</strong> 密码无法被修改.",
+            "success": "<strong>密码修改成功!</strong>"
+        }
+    },
+    "sessions": {
+        "title": "[<b>{{username}} 使用中的 Sessions</b>]",
+        "table": {
+            "ipaddress": "IP 位址",
+            "useragent": "使用者代理",
+            "date": "日期",
+            "button": "失效"
+        },
+        "messages": {
+            "success": "<strong>Session 已失效!</strong>",
+            "error": "<strong>错误发生!</strong> 无法使 Session 失效."
+        }
+    },
+    "tracker": {
+        "title": "即时使用者动态",
+        "table": {
+            "userlogin": "使用者",
+            "ipaddress": "IP位置",
+            "userAgent": "使用者代理",
+            "page": "目前页面",
+            "time": "时间"
+        }
+    },
+    "metrics": {
+        "title": "应用程式资源监控",
+        "refresh.button": "重整",
+        "updating": "更新中...",
+        "jvm": {
+            "title": "JVM 资源监控",
+            "memory": {
+                "title": "记忆体",
+                "total": "记忆体总计",
+                "heap": "堆积记忆体",
+                "nonheap": "非堆积记忆体"
+            },
+            "threads": {
+                "title": "执行绪",
+                "all": "All",
+                "runnable": "Runnable",
+                "timedwaiting": "Timed waiting",
+                "waiting": "Waiting",
+                "blocked": "Blocked",
+                "dump": {
+                    "title": "Threads dump",
+                    "id": "Id: ",
+                    "blockedtime": "Blocked Time",
+                    "blockedcount": "Blocked Count",
+                    "waitedtime": "Waited Time",
+                    "waitedcount": "Waited Count",
+                    "lockname": "Lock name",
+                    "stacktrace": "堆叠追踪",
+                    "show": "显示",
+                    "hide": "隐藏"
+                }
+            },
+            "gc": {
+                "title": "Garbage collections",
+                "marksweepcount": "Mark Sweep count",
+                "marksweeptime": "Mark Sweep time",
+                "scavengecount": "Scavenge count",
+                "scavengetime": "Scavenge time"
+            },
+            "http": {
+                "title": "HTTP 要求 (事件 / 秒)",
+                "active": "使用中要求:",
+                "total": "要求总数:",
+                "table": {
+                    "code": "状态码",
+                    "count": "次数",
+                    "mean": "平均数",
+                    "average": "平均值"
+                },
+                "code": {
+                    "ok": "2xx (成功)",
+                    "notfound": "4xx (要求错误)",
+                    "servererror": "5xx (伺服器错误)"
+                }
+            }
+        },
+        "servicesstats": {
+            "title": "服务统计资料 (时间单位为毫秒)",
+            "table": {
+                "name": "服务名称",
+                "count": "计数",
+                "mean": "平均值",
+                "min": "最小值",
+                "max": "最大值",
+                "p50": "p50",
+                "p75": "p75",
+                "p95": "p95",
+                "p99": "p99"
+            }
+        },
+        "ehcache": {
+            "title": "Ehcache 统计资料",
+            "cachename": "快取名称",
+            "objects": "物件",
+            "hits": "快取命中计数",
+            "misses": "快取遗漏计数",
+            "evictioncount": "收回计数",
+            "mean": "平均读取时间 (毫秒)"
+        },
+        "datasource": {
+        	"usage": "Usage",
+            "title": "DataSource statistics (time in millisecond)",
+            "name": "Pool usage",
+            "count": "Count",
+            "mean": "Mean",
+            "min": "Min",
+            "max": "Max",
+            "p50": "p50",
+            "p75": "p75",
+            "p95": "p95",
+            "p99": "p99"
+        }
+    },
+    "health": {
+        "title": "服务状态",
+        "refresh.button": "重整",
+        "stacktrace": "堆叠追踪",
+        "indicator": {
+            "db": "资料库",
+            "diskSpace": "Disk space",
+            "mail": "电子邮件",
+            "mongo": "MongoDB"
+        },
+        "table": {
+            "service": "服务名称",
+            "status": "状态"
+        },
+        "status": {
+            "UP": "正常",
+            "DOWN": "异常"
+        }
+    },
+    "configuration": {
+        "title": "Configuration",
+        "filter": "Filter (by prefix)",
+        "table": {
+            "prefix": "Prefix",
+            "properties": "Properties"
+        }
+    },
+    "logs": {
+        "title": "记录",
+        "nbloggers": "总共有 {{ total }} 个记录器.",
+        "filter": "筛选",
+        "table": {
+            "name": "名称",
+            "level": "层级"
+        }
+    },
+    "audits": {
+        "title": "稽核",
+        "filter": {
+            "title": "依据日期筛选",
+            "from": "从",
+            "to": "至",
+            "button": {
+                "weeks": "週",
+                "today": "今天",
+                "clear": "清除",
+                "close": "关闭"
+            }
+        },
+        "table": {
+            "header": {
+                "principal": "使用者",
+                "date": "日期",
+                "status": "状态",
+                "data": "额外的资料"
+            },
+            "data": {
+                "remoteAddress": "远端位址:"
+            }
+        }
+
+    },
+    "errors": {
+        "title": "错误页面!",
+        "403": "您未被授权存取此页面."
+    },
+       
+    "bibliograph": {
+      "bibliograph":"书目",
+      "title":"书目名称",
+      "author":"作者",
+      "intro":"简介",
+      "publisher":"出版社",
+      "callNumber":"书目编号",
+      "dueDays":"借阅天数",
+      "type":"书目类型",
+      "tag":"标签",
+      "createNewBibliograph":"增加书目",
+      "createOrEditBibliograph":"书目编辑修改"
+    },
+    
+     "reader": {
+      "reader":"读者",
+      "PermanentNo":"读者编号",
+	  "Name":"姓名",
+	  "HomePhone":"家庭电话",
+	  "MobilePhone":"移动电话",
+	  "Email":"电子邮件",
+	  "Address":"通讯地址",
+	  "PostCode":"邮政编码",
+      "createNewReader":"增加读者",
+      "createOrEditReader":"读者信息编辑修改"
+    },
+    
+     "footer": "这里是页尾"
+}

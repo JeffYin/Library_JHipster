@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Bibliograph.
+    -->
+    <changeSet id="20150101194504" author="jhipster">
+        <createTable tableName="T_BIBLIOGRAPH">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)"/>
+            <column name="author" type="varchar(255)"/>
+            <column name="intro" type="varchar(255)"/>
+            <column name="publisher" type="varchar(255)"/>
+            <column name="call_number" type="varchar(255)"/>
+            <column name="due_days" type="integer"/>
+            <column name="image_url" type="varchar(255)"/>
+            <column name="type" type="integer"/>
+        </createTable>
+        
+        <createTable tableName="T_BIBLIOGRAPH_T_TAG">
+            <column name="tags_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="t_bibliograph_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="tags_id"
+                                 baseTableName="T_BIBLIOGRAPH_T_TAG"
+                                 constraintName="fk_bibliograph_tag_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_TAG"/>
+        <addForeignKeyConstraint baseColumnNames="t_bibliograph_id"
+                                 baseTableName="T_BIBLIOGRAPH_T_TAG"
+                                 constraintName="fk_tag_bibliograph_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_BIBLIOGRAPH"/>
+        
+        
+    </changeSet>
+</databaseChangeLog>

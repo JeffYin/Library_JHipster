@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Item.
+    -->
+    <changeSet id="20150102172218" author="JeffY">
+        <createTable tableName="T_ITEM">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="barcode" type="varchar(255)"/>
+            <column name="status" type="integer"/>
+            <column name="comments" type="varchar(255)"/>
+            <column name="bibliograph_id" type="bigint"/>
+        </createTable>
+        
+        <addForeignKeyConstraint baseColumnNames="bibliograph_id"
+                                 baseTableName="T_ITEM"
+                                 constraintName="fk_item_bibliograph_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_BIBLIOGRAPH"/>
+ 
+                                      
+     <!--   -->  
+       <insert tableName="T_ITEM">
+            <column name="id" value="1"/>
+            <column name="barcode" value="3711001"/>
+            <column name="status" value="1"/>
+            <column name="comments" value=""/>
+            <column name="bibliograph_id" value="1"/>
+       </insert>    
+       
+      
+        <insert tableName="T_ITEM">
+            <column name="id" value="2"/>
+            <column name="barcode" value="3711002"/>
+            <column name="status" value="1"/>
+            <column name="comments" value=""/>
+            <column name="bibliograph_id" value="2"/>
+       </insert>    
+                                   
+        <insert tableName="T_ITEM">
+            <column name="id" value="3"/>
+            <column name="barcode" value="3711003"/>
+            <column name="status" value="1"/>
+            <column name="comments" value=""/>
+            <column name="bibliograph_id" value="3"/>
+       </insert>            
+       
+                         
+       
+    </changeSet>
+    
+</databaseChangeLog>

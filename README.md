@@ -1,2 +1,2 @@
-Library_JHipster
-================
+README for books
+==========================

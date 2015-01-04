@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Bibliograph.
+    -->
+    <changeSet id="20150101194504" author="JeffY">
+           
+        <insert tableName="T_BIBLIOGRAPH">
+            <column name="id" value="1"/>
+            <column name="title" value="Jesus's Calling"/>
+            <column name="author" value="Tomson"/>
+            <column name="intro" value="You can add more comment in the box."/>
+            <column name="publisher" value="my publisher"/>
+            <column name="call_number" value="jab ddd"/>
+            <column name="due_days" value="7"/>
+            <column name="image_url" value=""/>
+            <column name="type" value="1"/>
+         </insert> 
+        
+        <insert tableName="T_BIBLIOGRAPH">
+            <column name="id" value="2"/>
+            <column name="title" value="The Son of God"/>
+            <column name="author" value="Tomson"/>
+            <column name="intro" value="You can add more comment in the box."/>
+            <column name="publisher" value="LifeWay Christian Resources"/>
+            <column name="call_number" value="Tom lifway"/>
+            <column name="due_days" value="7"/>
+            <column name="image_url" value=""/>
+            <column name="type" value="1"/>
+         </insert> 
+         
+          <insert tableName="T_BIBLIOGRAPH">
+            <column name="id" value="3"/>
+            <column name="title" value="A Story Of Enlightenment"/>
+            <column name="author" value="Tomson"/>
+            <column name="intro" value="You can add more comment in the box."/>
+            <column name="publisher" value="BBC Audiobooks America"/>
+            <column name="call_number" value="jab bbc"/>
+            <column name="due_days" value="7"/>
+            <column name="image_url" value=""/>
+            <column name="type" value="1"/>
+         </insert> 
+         
+         <!-- Insert tags -->
+          <insert tableName="T_BIBLIOGRAPH_T_TAG">
+             <column name="tags_id" value="1"/>
+            <column name="t_bibliograph_id" value="1"/>
+         </insert> 
+         
+          <insert tableName="T_BIBLIOGRAPH_T_TAG">
+             <column name="tags_id" value="2"/>
+            <column name="t_bibliograph_id" value="1"/>
+         </insert> 
+         
+          <insert tableName="T_BIBLIOGRAPH_T_TAG">
+             <column name="tags_id" value="2"/>
+            <column name="t_bibliograph_id" value="2"/>
+         </insert> 
+         
+          <insert tableName="T_BIBLIOGRAPH_T_TAG">
+             <column name="tags_id" value="2"/>
+            <column name="t_bibliograph_id" value="3"/>
+         </insert> 
+         
+          <insert tableName="T_BIBLIOGRAPH_T_TAG">
+             <column name="tags_id" value="1"/>
+            <column name="t_bibliograph_id" value="3"/>
+         </insert> 
+    </changeSet>
+</databaseChangeLog>

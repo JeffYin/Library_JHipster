@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity BorrowHistory.
+    -->
+    <changeSet id="20150102173812" author="jhipster">
+        <createTable tableName="T_BORROWHISTORY">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="borrow_date" type="timestamp"/>
+            <column name="return_date" type="timestamp"/>
+            <column name="cleared" type="bit"/>
+            <column name="comments" type="varchar(255)"/>
+            <column name="item_id" type="bigint"/>
+            <column name="readercard_id" type="bigint"/>
+        </createTable>
+        
+        <addForeignKeyConstraint baseColumnNames="item_id"
+                                 baseTableName="T_BORROWHISTORY"
+                                 constraintName="fk_borrowhistory_item_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_ITEM"/>
+        <addForeignKeyConstraint baseColumnNames="readercard_id"
+                                 baseTableName="T_BORROWHISTORY"
+                                 constraintName="fk_borrowhistory_readercard_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_READERCARD"/>
+    </changeSet>
+</databaseChangeLog>

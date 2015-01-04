@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Reader.
+    -->
+    <changeSet id="20150102125404" author="JeffY">
+        <createTable tableName="T_READER">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="permanent_no" type="varchar(255)"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="home_phone" type="varchar(255)"/>
+            <column name="mobile_phone" type="varchar(255)"/>
+            <column name="email" type="varchar(255)"/>
+            <column name="address" type="varchar(255)"/>
+            <column name="post_code" type="varchar(255)"/>
+        </createTable>
+        
+        
+          <insert tableName="T_READER">
+            <column name="id" value="1"/>
+            <column name="permanent_no" value="0001"/>
+            <column name="name" value="殷振岭"/>
+            <column name="home_phone" value="416-001-0023"/>
+            <column name="mobile_phone" value="647-333-8876"/>
+            <column name="email" value="zhenlingyin@yahoo.ca"/>
+            <column name="address" value="450 Dundas West. Toronto"/>
+            <column name="post_code" value="A1M 2R3"/>
+         </insert> 
+         
+          <insert tableName="T_READER">
+            <column name="id" value="2"/>
+            <column name="permanent_no" value="0002"/>
+            <column name="name" value="黄智奇"/>
+            <column name="home_phone" value="416-001-0023"/>
+            <column name="mobile_phone" value="647-333-8876"/>
+            <column name="email" value="ck.wong@yahoo.ca"/>
+            <column name="address" value="450 Dundas West. Toronto"/>
+            <column name="post_code" value="A1M 2R3"/>
+         </insert> 
+    </changeSet>
+</databaseChangeLog>

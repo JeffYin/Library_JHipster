@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity ReaderCard.
+    -->
+    <changeSet id="20150102125521" author="jhipster">
+        <createTable tableName="T_READERCARD">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="barcode" type="varchar(255)"/>
+            <column name="status" type="integer"/>
+            <column name="reader_id" type="bigint"/>
+        </createTable>
+        
+        <addForeignKeyConstraint baseColumnNames="reader_id"
+                                 baseTableName="T_READERCARD"
+                                 constraintName="fk_readercard_reader_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_READER"/>
+       <insert tableName="T_READERCARD">
+            <column name="id" value="1" />
+            <column name="barcode" value="R0001"/>
+            <column name="status" value="1"/>
+            <column name="reader_id" value="1"/>
+       </insert>       
+       
+       <insert tableName="T_READERCARD">
+            <column name="id" value="2" />
+            <column name="barcode" value="R0002"/>
+            <column name="status" value="1"/>
+            <column name="reader_id" value="2"/>
+       </insert>                                       
+    </changeSet>
+</databaseChangeLog>
