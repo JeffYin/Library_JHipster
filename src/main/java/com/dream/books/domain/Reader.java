@@ -20,8 +20,7 @@ import java.util.Set;
 @NamedQueries({
     @NamedQuery(
 	    name = "Reader.getByNameLike",
-	    query
-	    = "from Reader where name like %?%"
+	    query= "from Reader where name like ?"
    )
 })
 public class Reader implements Serializable {

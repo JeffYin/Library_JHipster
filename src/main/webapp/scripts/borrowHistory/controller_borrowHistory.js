@@ -5,7 +5,10 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         $scope.borrowHistorys = resolvedBorrowHistory;
         $scope.items = resolvedItem;
         $scope.readerCards = resolvedReaderCard;
+        
+        
         $scope.readerBarcode="";
+        $scope.readerName="";
 
         $scope.create = function () {
             BorrowHistory.save($scope.borrowHistory,
@@ -21,43 +24,25 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
             $('#saveBorrowHistoryModal').modal('show');
         };
 
-        /*
-        $scope.delete = function (id) {
-            BorrowHistory.delete({id: id},
-                function () {
-                    $scope.borrowHistorys = BorrowHistory.query();
-                });
-        };
-       */
+       
         $scope.clear = function () {
             $scope.borrowHistory = {borrowDate: null, returnDate: null, cleared: null, comments: null, id: null};
         };
         
         /* Search Reader Card by barcode */
-        $scope.getReaercardByBarcode = function() {
+        $scope.getReadercardByBarcode = function() {
         	ReaderCard.getByBarcode({barcode: $scope.readerBarcode},function(readerCard) {
 				$scope.readerCards=readerCard;
 			});
         };
+
+        //TODO:finished the function. 
+        $scope.getReaderByName = function() {
+        	ReaderCard.get({name: $scope.readerName},function(reader) {
+        		$scope.readerCards=readerCard;
+        	});
+        };
         
-        /*
-        var timeout; 
-        $scope.$watch('readerBarcode', function(newBarCode) {
-        	if (newBarCode) {
-        		if (timeout) {
-        			$timeout.cancel(timeout); 
-        		}
-        		
-        		timeout = $timeout(function(){
-        			ReaderCard.getByBarcode({barcode: newBarCode},function(readerCard) {
-        				$scope.readerCards=readerCard;
-        			});
-        		},350);
-        	}
-           
-        });
-        */
-        
-        
+               
         
     });

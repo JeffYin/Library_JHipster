@@ -3,6 +3,7 @@ package com.dream.books.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.dream.books.domain.Reader;
 import com.dream.books.repository.ReaderRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
+
 import java.util.List;
 
 /**
@@ -49,6 +51,20 @@ public class ReaderResource {
         log.debug("REST request to get all Readers");
         return readerRepository.findAll();
     }
+    
+    
+    /**
+    * GET  /rest/readers -> get all the readers.
+    */
+   @RequestMapping(value = "/rest/readers", params={"name"},
+           method = RequestMethod.GET,
+           produces = MediaType.APPLICATION_JSON_VALUE)
+   @Timed
+   public List<Reader> getByName(@RequestParam String name) {
+       log.debug("REST request to get all Readers");
+       return readerRepository.getByNameLike(name);
+   }
+    
 
     /**
      * GET  /rest/readers/:id -> get the "id" reader.
