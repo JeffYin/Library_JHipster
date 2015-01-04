@@ -1,6 +1,6 @@
 'use strict';
 
-booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowHistory, BorrowHistory, resolvedItem, resolvedReaderCard,$timeout,ReaderCard) {
+booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowHistory, BorrowHistory, resolvedItem, resolvedReaderCard,$timeout,ReaderCard, Reader) {
 
         $scope.borrowHistorys = resolvedBorrowHistory;
         $scope.items = resolvedItem;
@@ -9,6 +9,8 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         
         $scope.readerBarcode="";
         $scope.readerName="";
+        $scope.selectedReader = ""; 
+        $scope.selectedReaderList="";
 
         $scope.create = function () {
             BorrowHistory.save($scope.borrowHistory,
@@ -32,14 +34,17 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         /* Search Reader Card by barcode */
         $scope.getReadercardByBarcode = function() {
         	ReaderCard.getByBarcode({barcode: $scope.readerBarcode},function(readerCard) {
-				$scope.readerCards=readerCard;
+				$scope.selectedReader =readerCard.reader;
 			});
         };
 
-        //TODO:finished the function. 
+        //Fetchh the read list which contains the given parameter. 
         $scope.getReaderByName = function() {
-        	ReaderCard.get({name: $scope.readerName},function(reader) {
-        		$scope.readerCards=readerCard;
+        	Reader.query({name: $scope.readerName},function(readers) {
+        		$scope.selectedReaderList =readers;
+        		if (readers.length==1) {
+        			$scope.selectedReader =readers[0];
+        		}
         	});
         };
         

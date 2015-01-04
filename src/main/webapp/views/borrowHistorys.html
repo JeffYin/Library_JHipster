@@ -11,7 +11,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="readerBarcode">Card Barcode</label>  
 		  <div class="col-md-4">
-		  	<input id="readerBarcode" type="text" placeholder="" class="form-control input-md" ng-model="readerBarcode" required ng-enter="getReadercardByBarcode();">
+		  	<input id="readerBarcode" type="text" placeholder="" class="form-control input-md" ng-model="readerBarcode" ng-enter="getReadercardByBarcode();">
 		  </div>
 		</div>
 
@@ -19,7 +19,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="readerName">Name</label>  
 		  <div class="col-md-4">
-		  	<input id="readerName" type="text" placeholder="" class="form-control input-md" ng-model="readerName" required>
+		  	<input id="readerName" type="text" placeholder="" class="form-control input-md" ng-model="readerName" ng-enter="getReaderByName();">
 		  </div>
 		</div>
 
@@ -45,7 +45,7 @@
 		 <legend> Bibliography Items</legend>
 
 		<div class="form-group">
-			<span class="help-block">{{readerCards.reader.name}}</span>  
+			<span class="help-block">{{selectedReader.name}}</span>  
 		</div>
 		
 		<!-- Text input-->

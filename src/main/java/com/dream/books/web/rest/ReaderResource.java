@@ -61,8 +61,8 @@ public class ReaderResource {
            produces = MediaType.APPLICATION_JSON_VALUE)
    @Timed
    public List<Reader> getByName(@RequestParam String name) {
-       log.debug("REST request to get all Readers");
-       return readerRepository.getByNameLike(name);
+       log.debug("REST request to get all Readers that contains the given name.");
+       return readerRepository.getByNameLike("%"+name+"%");
    }
     
 
