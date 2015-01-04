@@ -27,16 +27,21 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="readerHomePhone">Home Phone</label>  
 		  <div class="col-md-4">
-		  	<input id="readerHomePhone" type="text" placeholder="" class="form-control input-md" ng-model="readerHomePhone" required>
+		  	<input id="readerHomePhone" type="text" placeholder="" class="form-control input-md" ng-model="readerHomePhone" ng-enter="getReaderByHomePhone();">
 		  </div>
 		</div>
 
 		<!-- Cell Phone -->
 		<div class="form-group">
-		  <label class="col-md-4 control-label" for="readerCellPhone">Cell Phone</label>  
+		  <label class="col-md-4 control-label" for="readerMobilePhone">Mobile Phone</label>  
 		  <div class="col-md-4">
-		  	<input id="readerCellPhone" type="text" placeholder="" class="form-control input-md" ng-model="readerCellPhone" required>
+		  	<input id="readerMobilePhone" type="text" placeholder="" class="form-control input-md" ng-model="readerMobilePhone" ng-enter="getReaderByMobilePhone();">
 		  </div>
+		</div>
+		
+		
+		<div class="form-group">
+			<span class="help-block">{{selectedReader.name}}</span>  
 		</div>
 		
 		</fieldset>
@@ -44,15 +49,26 @@
 		<fieldset>
 		 <legend> Bibliography Items</legend>
 
-		<div class="form-group">
-			<span class="help-block">{{selectedReader.name}}</span>  
-		</div>
 		
 		<!-- Text input-->
 		<div class="form-group">
-		  <label class="col-md-4 control-label" for="itemBarcode">Scan Items</label>  
+		  <label class="col-md-4 control-label" for="itemBarcode">Item Barcode</label>  
 		  <div class="col-md-4">
-		  <input id="itemBarcode" name="itemBarcode" type="text" placeholder="placeholder" class="form-control input-md" required="">
+		  	<input id="itemBarcode" type="text" placeholder="Scan Item Barcode" class="form-control input-md" ng-model="itemBarcode" ng-enter="getItemByBarcode();">
+		  </div>
+		</div>
+		
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="itemBarcode">Item Call Number</label>  
+		  <div class="col-md-4">
+		 	 <input id="itemCallNumber" type="text" placeholder="Input Item Call Number" class="form-control input-md" ng-model="itemCallNumber" ng-enter="getItemByCallNumber();">
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="itemBarcode">Item Title</label>  
+		  <div class="col-md-4">
+		 	 <input id="itemTitle" type="text" placeholder="Input Item Title" class="form-control input-md" ng-model="itemTitle" ng-enter="getItemByTitle();">
 		  </div>
 		</div>
 		
@@ -100,6 +116,11 @@
             </tbody>
         </table>
     </div>
+    
+    
+		<div class="form-group">
+			<span class="help-block">{{selectedItem.bibliograph.title}}</span>  
+		</div>
 </div>
 
 

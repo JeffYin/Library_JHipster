@@ -21,7 +21,18 @@ import java.util.Set;
     @NamedQuery(
 	    name = "Reader.getByNameLike",
 	    query= "from Reader where name like ?"
-   )
+   ),
+
+   @NamedQuery(
+		   name = "Reader.getByHomephoneLike",
+		   query= "from Reader where homePhone like ?"
+		   ),
+
+  @NamedQuery(
+		   name = "Reader.getByMobilephoneLike",
+		   query= "from Reader where mobilePhone like ?"
+		)
+   
 })
 public class Reader implements Serializable {
 	private static final long serialVersionUID = -5478768464972594604L;
