@@ -81,14 +81,14 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         
         // Item Information collection
         
-        /* Search Reader Card by barcode */
+        /* Search Item by its barcode */
         $scope.getItemByBarcode = function() {
         	Item.get({barcode: $scope.itemBarcode},function(item) {
 				$scope.selectedItem = item;
 			});
         };      
 
-        /* Search Reader Card by callNumber */
+        /* Search Item by its callNumber */
         $scope.getItemByCallNumber = function() {
         	Item.query({callNumber: $scope.itemCallNumber},function(items) {
         		$scope.selectedItemList = items;
@@ -98,7 +98,7 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         	});
         };      
         
-        /* Search Reader Card by title */
+        /* Search Item by its title. */
         $scope.getItemByTitle = function() {
         	Item.query({title: $scope.itemTitle},function(items) {
         		$scope.selectedItemList = items;
