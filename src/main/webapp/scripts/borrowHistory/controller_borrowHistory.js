@@ -21,6 +21,10 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         $scope.selectedReaderList="";
         $scope.selectedItem="";
         $scope.selectedItemList="";
+        
+        
+        
+        $scope.foundMoreReaders=false;
 
         $scope.create = function () {
             BorrowHistory.save($scope.borrowHistory,
@@ -52,6 +56,8 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         $scope.getReaderByName = function() {
         	Reader.query({name: $scope.readerName},function(readers) {
         		$scope.selectedReaderList =readers;
+        		
+        		$scope.foundMoreReaders=readers.length>1; 
         		if (readers.length==1) {
         			$scope.selectedReader =readers[0];
         		}
@@ -63,6 +69,7 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         $scope.getReaderByHomePhone = function() {
         	Reader.query({homePhone: $scope.readerHomePhone},function(readers) {
         		$scope.selectedReaderList =readers;
+        		$scope.foundMoreReaders=readers.length>1; 
         		if (readers.length==1) {
         			$scope.selectedReader =readers[0];
         		}
@@ -73,6 +80,7 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         $scope.getReaderByMobilePhone = function() {
         	Reader.query({mobilePhone: $scope.readerMobilePhone},function(readers) {
         		$scope.selectedReaderList =readers;
+        		$scope.foundMoreReaders=readers.length>1; 
         		if (readers.length==1) {
         			$scope.selectedReader =readers[0];
         		}
