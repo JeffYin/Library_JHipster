@@ -1,6 +1,6 @@
 'use strict';
 
-booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowHistory, BorrowHistory, resolvedItem, resolvedReaderCard,$timeout,ReaderCard, Reader,Bibliograph, Item) {
+booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowHistory, BorrowHistory, resolvedItem, resolvedReaderCard,$timeout,ReaderCard, Reader,Bibliograph, Item,$location) {
 
         $scope.borrowHistorys = resolvedBorrowHistory;
         $scope.items = resolvedItem;
@@ -8,9 +8,9 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         
         
         $scope.readerBarcode="";
-        $scope.readerName="";
-        $scope.readerHomePhone="";
-        $scope.readerMobilePhone="";
+//        $scope.readerName="";
+//        $scope.readerHomePhone="";
+//        $scope.readerMobilePhone="";
 
         $scope.itemBarcode="";
         $scope.itemCallNumber="";
@@ -47,11 +47,12 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         
         /* Search Reader Card by barcode */
         $scope.getReadercardByBarcode = function() {
-        	ReaderCard.getByBarcode({barcode: $scope.readerBarcode},function(readerCard) {
+        	ReaderCard.get({barcode: $scope.readerBarcode},function(readerCard) {
 				$scope.selectedReader =readerCard.reader;
 			});
         };
 
+        /*
       //Fetch the reader list which contains the given name. 
         $scope.getReaderByName = function() {
         	Reader.query({name: $scope.readerName},function(readers) {
@@ -86,6 +87,7 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         		}
         	});
         };
+        */
         
         // Item Information collection
         
@@ -114,6 +116,11 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         			$scope.selectedItem =items[0];
         		}
         	});
-        };      
+        };
+        
+        $scope.readerSelected = function(selected) {
+        	var readerJson =selected.originalObject;
+        	$scope.selectedReader =readerJson;
+        };
         
     });

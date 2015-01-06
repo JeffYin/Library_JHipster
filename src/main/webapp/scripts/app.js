@@ -3,7 +3,8 @@
 /* App Module */
 
 var booksApp = angular.module('booksApp', ['http-auth-interceptor', 'tmh.dynamicLocale',
-    'ngResource', 'ngRoute', 'ngCookies', 'booksAppUtils', 'pascalprecht.translate', 'truncate', 'ngCacheBuster']);
+    'ngResource', 'ngRoute', 'ngCookies', 'booksAppUtils', 'pascalprecht.translate', 'truncate', 'ngCacheBuster','angucomplete-alt']);
+
 
 booksApp
     .config(function ($routeProvider, $httpProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, USER_ROLES) {
