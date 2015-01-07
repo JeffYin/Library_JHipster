@@ -21,10 +21,12 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         $scope.selectedReaderList="";
         $scope.selectedItem="";
         $scope.selectedItemList="";
+        $scope.foundItemList="";
         
         
         
-        $scope.foundMoreReaders=false;
+        
+        $scope.foundMoreItemsReaders=false;
 
         $scope.create = function () {
             BorrowHistory.save($scope.borrowHistory,
@@ -101,20 +103,28 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         /* Search Item by its callNumber */
         $scope.getItemByCallNumber = function() {
         	Item.query({callNumber: $scope.itemCallNumber},function(items) {
-        		$scope.selectedItemList = items;
+        		$scope.foundItemList = items;
+        		$scope.foundMoreItems=items.length>1;
+        		
+        		/*
         		if (items.length==1) {
         			$scope.selectedItem =items[0];
         		}
+        		*/
         	});
         };      
         
         /* Search Item by its title. */
+        
         $scope.getItemByTitle = function() {
         	Item.query({title: $scope.itemTitle},function(items) {
-        		$scope.selectedItemList = items;
+        		$scope.foundItemList = items;
+        		$scope.foundMoreItems=items.length>1;
+        		/*
         		if (items.length==1) {
         			$scope.selectedItem =items[0];
         		}
+        		*/
         	});
         };
         
@@ -123,4 +133,13 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         	$scope.selectedReader =readerJson;
         };
         
+        
+        $scope.addItemToList = function() {
+          //TODO: Get the checked item and add them to the selected lists. 
+        	
+        }
+        
+        $scope.hideItemPopupWindow = function() {
+        	$scope.foundMoreItems = false;
+        }
     });

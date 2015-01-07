@@ -148,21 +148,36 @@
 			<span class="help-block">{{selectedItem.bibliograph.title}}</span>  
 		</div>
 		
-   <!-- 		    
-	 <modal title="Login form" visible="foundMoreReaders">
-	    <form role="form">
-	      <div class="form-group">
-	        <label for="email">Email address</label>
-	        <input type="email" class="form-control" id="email" placeholder="Enter email" />
-	      </div>
-	      <div class="form-group">
-	        <label for="password">Password</label>
-	        <input type="password" class="form-control" id="password" placeholder="Password" />
-	      </div>
-	      <button type="submit" class="btn btn-default">Submit</button>
-	    </form>
-  </modal>
-	 -->	
+   <!-- 	-->	    
+	 <modal title="Item List" visible="foundMoreItems">
+	 <div class="table-responsive">
+	  <table class="table">
+	    <thead>
+	      	<th></th>
+	      	<th translate="global.menu.barcode">Barcode</th>
+		    <th translate="bibliograph.title">Title</th>
+		    <th translate="bibliograph.callNumber">CallNumber</th>
+		    <th translate="bibliograph.author">Author</th>
+		    <th translate="bibliograph.publisher">Publisher</th>
+	    </thead>
+	    
+	    <tbody ng-repeat="item in foundItemList">
+	       <tr>
+	         <td><input type="checkbox" value="{{item.id}}"></td>
+	         <td>{{item.barcode}}</td>
+	          <td>{{item.bibliograph.title}}</td>
+			  <td>{{item.bibliograph.callNumber}}</td>
+			  <td>{{item.bibliograph.author}}</td>
+			  <td>{{item.bibliograph.publisher}}</td>
+	       </tr>
+	    </tbody>
+	  </table>
+	</div>
+
+	  
+	      <button type="button" class="btn btn-primary" ng-click="">Add to Checkout List</button>
+	      <button type="button" class="btn btn-default" ng-click="hideItemPopupWindow()">Cancel</button>
+     </modal>
 		 
     
 </div>
