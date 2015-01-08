@@ -102,51 +102,37 @@
 		</form>
     
     </div>
-
+    
     <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>BorrowDate</th>
-                    <th>ReturnDate</th>
-                    <th>Cleared</th>
-                    <th>Comments</th>
-                    <th>item</th>
-                    <th>readerCard</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="borrowHistory in borrowHistorys">
-                    <td>{{borrowHistory.id}}</td>
-                    <td>{{borrowHistory.borrowDate}}</td>
-                    <td>{{borrowHistory.returnDate}}</td>
-                    <td>{{borrowHistory.cleared}}</td>
-                    <td>{{borrowHistory.comments}}</td>
-                    <td>{{borrowHistory.item.barcode}}</td>
-                    <td>{{borrowHistory.readerCard.barcode}}</td>
-                    <td>
-                        <button type="submit"
-                                ng-click="update(borrowHistory.id)"
-                                class="btn btn-default">
-                            <span class="glyphicon glyphicon-pencil"></span> Edit
-                        </button>
-                        <button type="submit"
-                                ng-click="delete(borrowHistory.id)"
+	  <table class="table">
+	    <thead>
+	      	<th translate="global.menu.barcode">Barcode</th>
+		    <th translate="bibliograph.title">Title</th>
+		    <th translate="bibliograph.callNumber">CallNumber</th>
+		    <th translate="bibliograph.author">Author</th>
+		    <th translate="bibliograph.publisher">Publisher</th>
+		    <th></th>
+	    </thead>
+	    
+	    <tbody ng-repeat="item in selectedItemList">
+	       <tr>
+	          <td>{{item.barcode}}</td>
+	          <td>{{item.bibliograph.title}}</td>
+			  <td>{{item.bibliograph.callNumber}}</td>
+			  <td>{{item.bibliograph.author}}</td>
+			  <td>{{item.bibliograph.publisher}}</td>
+			  <td>
+			   <button type="submit"
+                                ng-click="deleteSelectedItem(item.id)"
                                 class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove-circle"></span> Delete
                         </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    
-    
-		<div class="form-group">
-			<span class="help-block">{{selectedItem.bibliograph.title}}</span>  
-		</div>
+			  </td>
+	       </tr>
+	    </tbody>
+	  </table>
+	</div>
+	
 		
    <!-- 	-->	    
 	 <modal title="Item List" visible="foundMoreItems">
@@ -163,7 +149,7 @@
 	    
 	    <tbody ng-repeat="item in foundItemList">
 	       <tr>
-	         <td><input type="checkbox" value="{{item.id}}"></td>
+	         <td><input type="checkbox" ng-model="selectedItemsId[$index]" ></td>
 	         <td>{{item.barcode}}</td>
 	          <td>{{item.bibliograph.title}}</td>
 			  <td>{{item.bibliograph.callNumber}}</td>
@@ -173,12 +159,12 @@
 	    </tbody>
 	  </table>
 	</div>
-
-	  
-	      <button type="button" class="btn btn-primary" ng-click="">Add to Checkout List</button>
-	      <button type="button" class="btn btn-default" ng-click="hideItemPopupWindow()">Cancel</button>
+	      <button type="button" class="btn btn-info" ng-click="hideItemPopupWindow()">Close</button>
+	      
+	    	      	 
      </modal>
 		 
+
     
 </div>
 

@@ -20,9 +20,11 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         $scope.selectedReader = ""; 
         $scope.selectedReaderList="";
         $scope.selectedItem="";
-        $scope.selectedItemList="";
+       // $scope.selectedItemList="";
         $scope.foundItemList="";
         
+        $scope.selectedItemsId={};
+        $scope.selectedItemList=[];
         
         
         
@@ -102,6 +104,7 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
 
         /* Search Item by its callNumber */
         $scope.getItemByCallNumber = function() {
+        	$scope.selectedItemsId=[];
         	Item.query({callNumber: $scope.itemCallNumber},function(items) {
         		$scope.foundItemList = items;
         		$scope.foundMoreItems=items.length>1;
@@ -117,6 +120,7 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         /* Search Item by its title. */
         
         $scope.getItemByTitle = function() {
+        	$scope.selectedItemsId=[];
         	Item.query({title: $scope.itemTitle},function(items) {
         		$scope.foundItemList = items;
         		$scope.foundMoreItems=items.length>1;
@@ -142,4 +146,49 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         $scope.hideItemPopupWindow = function() {
         	$scope.foundMoreItems = false;
         }
+        
+        $scope.$watch("selectedItemsId", function(selection) {
+            var selected = [];
+            angular.forEach(selection, function(val, idx){
+              if(val) {
+                var newRow = angular.copy($scope.foundItemList[idx]);         
+                selected.push(newRow);
+              }
+            });
+            mergeItemArray($scope.selectedItemList,selected);
+            
+          }, true);
+        
+        $scope.deleteSelectedItem = function(itemId) {
+        	var selectedItemList=$scope.selectedItemList;
+        	for (var i = 0; i < selectedItemList.length; i++){
+        			if (selectedItemList[i].id === itemId){
+        				selectedItemList.splice(i, 1)
+        				break;
+        			}
+        	}
+        };
+        
     });
+
+//Merge two arrays and remove the duplicate items. 
+function mergeItemArray(arr1, arr2) {
+//	var _arr = [];
+//	for (var i = 0; i < arr1.length; i++) {
+//		_arr.push(arr1[i]);
+//	}
+	var _dup;
+	for (var i = 0; i < arr2.length; i++){
+		_dup = false;
+		for (var _i = 0; _i < arr1.length; _i++){
+			if (arr2[i].id === arr1[_i].id){
+				_dup = true;
+				break;
+			}
+		}
+		if (!_dup){
+			arr1.push(arr2[i]);
+		}
+	}
+}
+
