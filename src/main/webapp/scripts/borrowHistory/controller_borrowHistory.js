@@ -55,6 +55,8 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         $scope.getReadercardByBarcode = function() {
         	ReaderCard.get({barcode: $scope.readerBarcode},function(readerCard) {
 				$scope.selectedReader =readerCard.reader;
+				//Clear the readerBarcode inputbox.
+				$scope.readerBarcode="";
 			});
         };
 
@@ -100,7 +102,11 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         /* Search Item by its barcode */
         $scope.getItemByBarcode = function() {
         	Item.get({barcode: $scope.itemBarcode},function(item) {
-				$scope.selectedItem = item;
+//				$scope.selectedItem = item;
+        	    var itemArray=[];
+        	    itemArray.push(item);
+				mergeItemArray($scope.checkedOutItemList,itemArray);
+				$scope.itemBarcode="";
 			});
         };      
 
@@ -108,9 +114,9 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         $scope.getItemByCallNumber = function() {
         	$scope.selectedItemsId=[];
         	Item.query({callNumber: $scope.itemCallNumber},function(items) {
+        		$scope.itemCallNumber="";
         		$scope.foundItemList = items;
-        		$scope.foundMoreItems=items.length>1;
-        		
+        		$scope.foundMoreItems=items.length>=1;
         		/*
         		if (items.length==1) {
         			$scope.selectedItem =items[0];
@@ -125,7 +131,8 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         	$scope.selectedItemsId=[];
         	Item.query({title: $scope.itemTitle},function(items) {
         		$scope.foundItemList = items;
-        		$scope.foundMoreItems=items.length>1;
+        		$scope.foundMoreItems=items.length>=1;
+        		$scope.itemTitle="";
         		/*
         		if (items.length==1) {
         			$scope.selectedItem =items[0];
