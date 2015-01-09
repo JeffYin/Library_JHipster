@@ -19,13 +19,15 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         
         $scope.selectedReader = ""; 
         $scope.selectedReaderList="";
+
         $scope.selectedItem="";
-       // $scope.selectedItemList="";
-        $scope.foundItemList="";
-        
+        $scope.foundItemList=[];
         $scope.selectedItemsId={};
         $scope.selectedItemList=[];
         
+        //The ItemList in the main checkout page. 
+        $scope.checkedOutItemList=[];
+
         
         
         $scope.foundMoreItemsReaders=false;
@@ -143,24 +145,29 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         	
         }
         
+        //Close the Item popup windows and copy the selected Items to the main list. 
+        $scope.addItemsFromPopupWindow = function() {
+        	mergeItemArray($scope.checkedOutItemList,$scope.selectedItemList);
+        	$scope.foundMoreItems = false;
+        }
+        //Close the Item popup windows. 
+
         $scope.hideItemPopupWindow = function() {
         	$scope.foundMoreItems = false;
         }
         
         $scope.$watch("selectedItemsId", function(selection) {
-            var selected = [];
+        	$scope.selectedItemList = [];
             angular.forEach(selection, function(val, idx){
               if(val) {
                 var newRow = angular.copy($scope.foundItemList[idx]);         
-                selected.push(newRow);
+                $scope.selectedItemList.push(newRow);
               }
             });
-            mergeItemArray($scope.selectedItemList,selected);
-            
           }, true);
         
         $scope.deleteSelectedItem = function(itemId) {
-        	var selectedItemList=$scope.selectedItemList;
+        	var selectedItemList=$scope.checkedOutItemList;
         	for (var i = 0; i < selectedItemList.length; i++){
         			if (selectedItemList[i].id === itemId){
         				selectedItemList.splice(i, 1)

@@ -114,7 +114,7 @@
 		    <th></th>
 	    </thead>
 	    
-	    <tbody ng-repeat="item in selectedItemList">
+	    <tbody ng-repeat="item in checkedOutItemList">
 	       <tr>
 	          <td>{{item.barcode}}</td>
 	          <td>{{item.bibliograph.title}}</td>
@@ -159,7 +159,17 @@
 	    </tbody>
 	  </table>
 	</div>
-	      <button type="button" class="btn btn-info" ng-click="hideItemPopupWindow()">Close</button>
+	
+	 
+	   <div class="btn-group">
+	      <button type="button" class="btn btn-primary" ng-click="addItemsFromPopupWindow()">
+	         <span class="glyphicon glyphicon-ok"></span><label translate="global.menu.done">Done</label> 
+	      </button>
+	      
+	      <button type="button" class="btn btn-default" ng-click="hideItemPopupWindow()">
+	          <span class="glyphicon glyphicon-remove"></span> <label translate="global.menu.cancel">Cancel</label> 
+	      </button>
+	   </div>   
      </modal>
 
 </div>
