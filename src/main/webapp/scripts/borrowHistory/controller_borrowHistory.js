@@ -1,6 +1,6 @@
 'use strict';
 
-booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowHistory, BorrowHistory, resolvedItem, resolvedReaderCard,$timeout,ReaderCard, Reader,Bibliograph, Item,$location) {
+var borrowHistoryController = booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowHistory, BorrowHistory, resolvedItem, resolvedReaderCard,$timeout,ReaderCard, Reader,Bibliograph, Item,$location) {
 
         $scope.borrowHistorys = resolvedBorrowHistory;
         $scope.items = resolvedItem;
@@ -126,8 +126,9 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         };      
         
         /* Search Item by its title. */
-        
         $scope.getItemByTitle = function() {
+
+        	alert(moment().add(3, 'days').format("YYYY-MM-DD"));      
         	$scope.selectedItemsId=[];
         	Item.query({title: $scope.itemTitle},function(items) {
         		$scope.foundItemList = items;
@@ -184,6 +185,7 @@ booksApp.controller('BorrowHistoryController', function ($scope, resolvedBorrowH
         };
         
     });
+
 
 //Merge two arrays and remove the duplicate items. 
 function mergeItemArray(arr1, arr2) {

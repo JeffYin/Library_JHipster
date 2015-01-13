@@ -146,6 +146,7 @@
 		    <th translate="bibliograph.callNumber">CallNumber</th>
 		    <th translate="bibliograph.author">Author</th>
 		    <th translate="bibliograph.publisher">Publisher</th>
+		     <th translate="borrowHistory.returnDate">Return Date</th>
 		    <th></th>
 	    </thead>
 	    
@@ -156,6 +157,7 @@
 			  <td>{{item.bibliograph.callNumber}}</td>
 			  <td>{{item.bibliograph.author}}</td>
 			  <td>{{item.bibliograph.publisher}}</td>
+			   <td>{{item.bibliograph.dueDays|returnDate}}</td>
 			  <td>
 			   <button type="submit"
                                 ng-click="deleteSelectedItem(item.id)"
@@ -180,6 +182,7 @@
 		    <th translate="bibliograph.callNumber">CallNumber</th>
 		    <th translate="bibliograph.author">Author</th>
 		    <th translate="bibliograph.publisher">Publisher</th>
+		   
 	    </thead>
 	    
 	    <tbody ng-repeat="item in foundItemList">
@@ -190,6 +193,7 @@
 			  <td>{{item.bibliograph.callNumber}}</td>
 			  <td>{{item.bibliograph.author}}</td>
 			  <td>{{item.bibliograph.publisher}}</td>
+			 
 	       </tr>
 	    </tbody>
 	  </table>
