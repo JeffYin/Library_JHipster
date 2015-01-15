@@ -1,19 +1,24 @@
 package com.dream.books.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.dream.books.domain.util.CustomDateTimeDeserializer;
-import com.dream.books.domain.util.CustomDateTimeSerializer;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import com.dream.books.domain.util.CustomDateTimeDeserializer;
+import com.dream.books.domain.util.CustomDateTimeSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * A BorrowHistory.
@@ -49,7 +54,7 @@ public class BorrowHistory implements Serializable {
     private Item item;
 
     @ManyToOne
-    private ReaderCard readerCard;
+    private Reader reader;
 
     public Long getId() {
         return id;
@@ -99,15 +104,16 @@ public class BorrowHistory implements Serializable {
         this.item = item;
     }
 
-    public ReaderCard getReaderCard() {
-        return readerCard;
-    }
+    
+    public Reader getReader() {
+		return reader;
+	}
 
-    public void setReaderCard(ReaderCard readerCard) {
-        this.readerCard = readerCard;
-    }
+	public void setReader(Reader reader) {
+		this.reader = reader;
+	}
 
-    @Override
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

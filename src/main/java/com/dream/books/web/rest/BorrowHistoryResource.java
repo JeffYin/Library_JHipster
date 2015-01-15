@@ -1,18 +1,30 @@
 package com.dream.books.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import com.dream.books.domain.BorrowHistory;
-import com.dream.books.repository.BorrowHistoryRepository;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
+
+import org.joda.time.DateTime;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+import com.codahale.metrics.annotation.Timed;
+import com.dream.books.domain.BorrowHistory;
+import com.dream.books.domain.Item;
+import com.dream.books.domain.Reader;
+import com.dream.books.repository.BorrowHistoryRepository;
 
 /**
  * REST controller for managing BorrowHistory.
@@ -33,9 +45,38 @@ public class BorrowHistoryResource {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public void create(@RequestBody BorrowHistory borrowHistory) {
+    public void create(@RequestBody String borrowHistory) {
         log.debug("REST request to save BorrowHistory : {}", borrowHistory);
-        borrowHistoryRepository.save(borrowHistory);
+        try {
+			JSONObject jsonObject = new JSONObject(borrowHistory);
+			Long readerId = new Long((Integer)jsonObject.get("readerId"));
+			Reader reader = new Reader(); 
+			reader.setId(readerId);
+			
+			JSONArray itemIds = (JSONArray) jsonObject.get("itemIds"); 
+			for (int i=0; i<itemIds.length();i++) {
+			   Long itemId = new Long((Integer)itemIds.get(0));
+			   BorrowHistory history = new BorrowHistory();
+			   
+			   Item item = new Item();
+			   item.setId(itemId);
+			   
+			   history.setReader(reader);
+			   history.setItem(item);
+			   
+			   DateTime currentTime = DateTime.now();
+			   history.setBorrowDate(DateTime.now());
+			   
+			   //TODO: set the return Date. 
+			   history.setReturnDate(currentTime.plusDays(XXX));
+			   
+			   
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} 
+        
+//        borrowHistoryRepository.save(borrowHistory);
     }
 
     /**
