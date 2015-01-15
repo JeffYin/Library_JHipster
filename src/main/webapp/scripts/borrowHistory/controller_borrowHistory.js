@@ -184,6 +184,22 @@ var borrowHistoryController = booksApp.controller('BorrowHistoryController', fun
         	}
         };
         
+        
+        $scope.checkout = function() {
+        	var itemIds=[]; 
+        	for (var i = 0; i<$scope.checkedOutItemList.length; i++) {
+        		itemIds.push($scope.checkedOutItemList[i].id);
+        	}
+        	
+        	var data ={};
+        	data.readerId = $scope.selectedReader.id;
+        	data.itemIds=itemIds; 
+        	
+        	BorrowHistory.save(data,  function () {
+                    $scope.clear();
+                });
+        }
+        
     });
 
 
