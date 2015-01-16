@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity ItemStatus.
+    -->
+    <changeSet id="20150116153009" author="jhipster">
+        <createTable tableName="T_ITEMSTATUS">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="value" type="integer"/>
+            <column name="lable" type="varchar(255)"/>
+        </createTable>
+        
+         <insert tableName="T_ITEMSTATUS">
+            <column name="id" value="1"/>
+            <column name="value" value="-100"/>
+            <column name="lable" value="Lost"/>
+       </insert>    
+
+         <insert tableName="T_ITEMSTATUS">
+            <column name="id" value="2"/>
+            <column name="value" value="-10"/>
+            <column name="lable" value="NotPublished"/>
+       </insert>    
+
+         <insert tableName="T_ITEMSTATUS">
+            <column name="id" value="3"/>
+            <column name="value" value="-1"/>
+            <column name="lable" value="Borrowed"/>
+       </insert>    
+         <insert tableName="T_ITEMSTATUS">
+            <column name="id" value="4"/>
+            <column name="value" value="0"/>
+            <column name="lable" value="ReadyForBorrow"/>
+       </insert>    
+       
+    </changeSet>
+</databaseChangeLog>

@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
+import com.dream.books.data.ItemStatus;
 import com.dream.books.domain.BorrowHistory;
 import com.dream.books.domain.Item;
 import com.dream.books.domain.Reader;
 import com.dream.books.repository.BorrowHistoryRepository;
+import com.dream.books.repository.ItemRepository;
 
 /**
  * REST controller for managing BorrowHistory.
@@ -33,6 +35,9 @@ public class BorrowHistoryResource {
 
     @Inject
     private BorrowHistoryRepository borrowHistoryRepository;
+    
+    @Inject
+    private ItemRepository itemRepository; 
 
     /**
      * POST  /rest/borrowHistorys -> Create a new borrowHistory.
@@ -47,9 +52,17 @@ public class BorrowHistoryResource {
         Reader reader = wrapper.getReader(); 
         
         for (Item item:items) {
-        	BorrowHistory history = new BorrowHistory(); 
+        	//Change Item status. 
+        	
+        	item.setStatus(ItemStatus.Borrowed.getValue());
+        	itemRepository.save(item); 
+        	
+        	BorrowHistory history = new BorrowHistory();
+        	
         	history.setReader(reader);
         	history.setItem(item);
+        	
+        	
         	DateTime currentTime = DateTime.now(); 
         	DateTime dueDate = currentTime.plusDays(item.getBibliograph().getDueDays());
         	

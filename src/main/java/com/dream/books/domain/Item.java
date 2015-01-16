@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.dream.books.data.ItemStatus;
+
 /**
  * A Item.
  */
@@ -32,7 +34,7 @@ public class Item implements Serializable {
     private String barcode;
 
     @Column(name = "status")
-    private Integer status;
+    private Integer status = ItemStatus.ReadyForBorrow.getValue();
 
     @Column(name = "comments")
     private String comments;
