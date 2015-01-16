@@ -6,9 +6,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
 import org.joda.time.DateTime;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -32,7 +29,6 @@ import com.dream.books.repository.BorrowHistoryRepository;
 @RestController
 @RequestMapping("/app")
 public class BorrowHistoryResource {
-
     private final Logger log = LoggerFactory.getLogger(BorrowHistoryResource.class);
 
     @Inject
@@ -45,8 +41,26 @@ public class BorrowHistoryResource {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public void create(@RequestBody String borrowHistory) {
-        log.debug("REST request to save BorrowHistory : {}", borrowHistory);
+    public void create(@RequestBody CheckoutInfoWrapper wrapper) {
+        log.debug("REST request to save BorrowHistory : {}", wrapper);
+        List<Item>items = wrapper.getItems();
+        Reader reader = wrapper.getReader(); 
+        
+        for (Item item:items) {
+        	BorrowHistory history = new BorrowHistory(); 
+        	history.setReader(reader);
+        	history.setItem(item);
+        	DateTime currentTime = DateTime.now(); 
+        	DateTime dueDate = currentTime.plusDays(item.getBibliograph().getDueDays());
+        	
+        	history.setBorrowDate(currentTime);
+        	history.setDueDate(dueDate);
+        	
+        	history.setCleared(Boolean.FALSE);
+        	borrowHistoryRepository.save(history);
+        }
+        
+        /*
         try {
 			JSONObject jsonObject = new JSONObject(borrowHistory);
 			Long readerId = new Long((Integer)jsonObject.get("readerId"));
@@ -75,7 +89,7 @@ public class BorrowHistoryResource {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} 
-        
+        */
 //        borrowHistoryRepository.save(borrowHistory);
     }
 

@@ -44,6 +44,12 @@ public class BorrowHistory implements Serializable {
     @Column(name = "return_date", nullable = false)
     private DateTime returnDate;
 
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @JsonSerialize(using = CustomDateTimeSerializer.class)
+    @JsonDeserialize(using = CustomDateTimeDeserializer.class)
+    @Column(name = "due_date", nullable = false)
+    private DateTime dueDate;
+
     @Column(name = "cleared")
     private Boolean cleared;
 
@@ -112,6 +118,16 @@ public class BorrowHistory implements Serializable {
 	public void setReader(Reader reader) {
 		this.reader = reader;
 	}
+	
+	
+
+	public DateTime getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(DateTime dueDate) {
+		this.dueDate = dueDate;
+	}
 
 	@Override
     public boolean equals(Object o) {
@@ -134,11 +150,13 @@ public class BorrowHistory implements Serializable {
         return (int) (id ^ (id >>> 32));
     }
 
+    
     @Override
     public String toString() {
         return "BorrowHistory{" +
                 "id=" + id +
                 ", borrowDate='" + borrowDate + "'" +
+                ", dueDate='" + dueDate + "'" +
                 ", returnDate='" + returnDate + "'" +
                 ", cleared='" + cleared + "'" +
                 ", comments='" + comments + "'" +

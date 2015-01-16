@@ -16,11 +16,12 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="borrow_date" type="timestamp"/>
+            <column name="due_date" type="timestamp"/>
             <column name="return_date" type="timestamp"/>
             <column name="cleared" type="bit"/>
             <column name="comments" type="varchar(255)"/>
             <column name="item_id" type="bigint"/>
-            <column name="readercard_id" type="bigint"/>
+            <column name="reader_id" type="bigint"/>
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="item_id"
@@ -28,10 +29,10 @@
                                  constraintName="fk_borrowhistory_item_id"
                                  referencedColumnNames="id"
                                  referencedTableName="T_ITEM"/>
-        <addForeignKeyConstraint baseColumnNames="readercard_id"
+        <addForeignKeyConstraint baseColumnNames="reader_id"
                                  baseTableName="T_BORROWHISTORY"
-                                 constraintName="fk_borrowhistory_readercard_id"
+                                 constraintName="fk_borrowhistory_reader_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="T_READERCARD"/>
+                                 referencedTableName="T_READER"/>
     </changeSet>
 </databaseChangeLog>

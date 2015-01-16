@@ -188,12 +188,12 @@ var borrowHistoryController = booksApp.controller('BorrowHistoryController', fun
         $scope.checkout = function() {
         	var itemIds=[]; 
         	for (var i = 0; i<$scope.checkedOutItemList.length; i++) {
-        		itemIds.push($scope.checkedOutItemList[i].id);
+        		itemIds.push($scope.checkedOutItemList[i]);
         	}
         	
         	var data ={};
-        	data.readerId = $scope.selectedReader.id;
-        	data.itemIds=itemIds; 
+        	data.reader = $scope.selectedReader;
+        	data.items=itemIds; 
         	
         	BorrowHistory.save(data,  function () {
                     $scope.clear();
