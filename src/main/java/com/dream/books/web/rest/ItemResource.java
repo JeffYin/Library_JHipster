@@ -128,4 +128,4 @@ public class ItemResource {
         log.debug("REST request to delete Item : {}", id);
         itemRepository.delete(id);
     }
-}
+  }

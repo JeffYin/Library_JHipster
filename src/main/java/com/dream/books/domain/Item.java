@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -41,6 +42,9 @@ public class Item implements Serializable {
 
     @ManyToOne
     private Bibliograph bibliograph;
+    
+    @Transient
+    private String statusLable; 
 
     public Long getId() {
         return id;
@@ -82,7 +86,15 @@ public class Item implements Serializable {
         this.bibliograph = bibliograph;
     }
 
-    @Override
+    public String getStatusLable() {
+		return statusLable;
+	}
+
+	public void setStatusLable(String statusLable) {
+		this.statusLable = statusLable;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

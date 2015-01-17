@@ -24,14 +24,14 @@
                 "register": "注册"
             },
             "admin": "管理",
-            "language":"语言",
-            "edit":"编辑",
-            "save":"保存",
-            "delete":"删除",
-            "cancel":"取消",
-            "barcode":"条码",
-            "done":"完成",
-            "close":"关闭"
+            "language": "语言",
+            "edit": "编辑",
+            "save": "保存",
+            "delete": "删除",
+            "cancel": "取消",
+            "barcode": "条码",
+            "done": "完成",
+            "close": "关闭"
         },
         "form": {
             "username": "帐号",
@@ -42,7 +42,6 @@
             "confirmpassword.placeholder": "确认您的新密码",
             "email": "电子邮件",
             "email.placeholder": "您的电子邮件"
-            
         },
         "messages": {
             "info": {
@@ -50,7 +49,7 @@
                 "register": "您还没有帐号？<a href=\"#/register\">注册一个新帐号</a>"
             },
             "error": {
-                "dontmatch" : "您输入的密码与密码确认不符合!"
+                "dontmatch": "您输入的密码与密码确认不符合!"
             },
             "validate": {
                 "newpassword": {
@@ -167,7 +166,7 @@
             "button": "储存"
         },
         "messages": {
-            "error":  "<strong>发生错误!</strong> 密码无法被修改.",
+            "error": "<strong>发生错误!</strong> 密码无法被修改.",
             "success": "<strong>密码修改成功!</strong>"
         }
     },
@@ -274,7 +273,7 @@
             "mean": "平均读取时间 (毫秒)"
         },
         "datasource": {
-        	"usage": "Usage",
+            "usage": "Usage",
             "title": "DataSource statistics (time in millisecond)",
             "name": "Pool usage",
             "count": "Count",
@@ -347,43 +346,45 @@
                 "remoteAddress": "远端位址:"
             }
         }
-
     },
     "errors": {
-        "title": "错误页面!",
-        "403": "您未被授权存取此页面."
+        "403": "您未被授权存取此页面.",
+        "title": "错误页面!"
     },
-       
     "bibliograph": {
-      "bibliograph":"书目",
-      "title":"书目名称",
-      "author":"作者",
-      "intro":"简介",
-      "publisher":"出版社",
-      "callNumber":"书目编号",
-      "dueDays":"借阅天数",
-      "type":"书目类型",
-      "tag":"标签",
-      "createNewBibliograph":"增加书目",
-      "createOrEditBibliograph":"书目编辑修改"
+        "bibliograph": "书目",
+        "title": "书目名称",
+        "author": "作者",
+        "intro": "简介",
+        "publisher": "出版社",
+        "callNumber": "书目编号",
+        "dueDays": "借阅天数",
+        "type": "书目类型",
+        "tag": "标签",
+        "createNewBibliograph": "增加书目",
+        "createOrEditBibliograph": "书目编辑修改"
     },
-    
-     "reader": {
-      "reader":"读者",
-      "PermanentNo":"读者编号",
-	  "Name":"姓名",
-	  "HomePhone":"家庭电话",
-	  "MobilePhone":"移动电话",
-	  "Email":"电子邮件",
-	  "Address":"通讯地址",
-	  "PostCode":"邮政编码",
-      "createNewReader":"增加读者",
-      "createOrEditReader":"读者信息编辑修改"
+    "item": {
+        "0": "书架上",
+        "Status": "状态",
+        "-100": "丢失",
+        "-10": "未上架",
+        "-1": "已外借"
     },
-    
-    "borrowHistory":{
-    	"returnDate":"归还日期"
+    "reader": {
+        "reader": "读者",
+        "PermanentNo": "读者编号",
+        "Name": "姓名",
+        "HomePhone": "家庭电话",
+        "MobilePhone": "移动电话",
+        "Email": "电子邮件",
+        "Address": "通讯地址",
+        "PostCode": "邮政编码",
+        "createNewReader": "增加读者",
+        "createOrEditReader": "读者信息编辑修改"
     },
-    
-     "footer": "这里是页尾"
+    "borrowHistory": {
+        "returnDate": "归还日期"
+    },
+    "footer": "这里是页尾"
 }

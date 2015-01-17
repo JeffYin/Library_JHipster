@@ -195,6 +195,7 @@
 		    <th translate="bibliograph.callNumber">CallNumber</th>
 		    <th translate="bibliograph.author">Author</th>
 		    <th translate="bibliograph.publisher">Publisher</th>
+		    <th translate="item.Status">Status</th>
 		   
 	    </thead>
 	    
@@ -206,6 +207,7 @@
 			  <td>{{item.bibliograph.callNumber}}</td>
 			  <td>{{item.bibliograph.author}}</td>
 			  <td>{{item.bibliograph.publisher}}</td>
+			  <td translate="item.{{item.status}}">{{item.status}}</td>
 			 
 	       </tr>
 	    </tbody>
