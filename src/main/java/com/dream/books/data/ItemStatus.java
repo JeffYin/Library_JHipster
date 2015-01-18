@@ -1,17 +1,18 @@
 package com.dream.books.data;
 
 public enum ItemStatus {
-	Lost(-100), NotPublished(-10), Borrowed(-1), ReadyForBorrow(0);  
+	Lost("Lost"), NotPublished("NotPublished"), Borrowed("Borrowed"), ReadyForBorrow("ReadyForBorrow");  
 	
-	private final Integer value;
+	private final String value;
 //	private final String lable;
 	
-    private ItemStatus(Integer value) {
+	
+    private ItemStatus(String value) {
     	this.value = value; 
 //    	this.lable = lable; 
     }
     
-    public Integer getValue() {
+    public String getValue() {
     	return value; 
     }
 

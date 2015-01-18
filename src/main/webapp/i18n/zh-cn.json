@@ -365,11 +365,11 @@
         "createOrEditBibliograph": "书目编辑修改"
     },
     "item": {
-        "0": "书架上",
         "Status": "状态",
-        "-100": "丢失",
-        "-10": "未上架",
-        "-1": "已外借"
+        "ReadyForBorrow": "书架上",
+        "Lost": "丢失",
+        "NotPublished": "未上架",
+        "Borrowed": "已借出"
     },
     "reader": {
         "reader": "读者",

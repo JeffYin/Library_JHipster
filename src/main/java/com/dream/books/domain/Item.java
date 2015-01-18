@@ -35,7 +35,7 @@ public class Item implements Serializable {
     private String barcode;
 
     @Column(name = "status")
-    private Integer status = ItemStatus.ReadyForBorrow.getValue();
+    private String status = ItemStatus.ReadyForBorrow.getValue();
 
     @Column(name = "comments")
     private String comments;
@@ -62,11 +62,11 @@ public class Item implements Serializable {
         this.barcode = barcode;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

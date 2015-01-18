@@ -16,7 +16,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="barcode" type="varchar(255)"/>
-            <column name="status" type="integer"/>
+            <column name="status" type="varchar(32)"/>
             <column name="comments" type="varchar(255)"/>
             <column name="bibliograph_id" type="bigint"/>
         </createTable>
@@ -32,7 +32,7 @@
        <insert tableName="T_ITEM">
             <column name="id" value="1"/>
             <column name="barcode" value="3711001"/>
-            <column name="status" value="0"/>
+            <column name="status" value="ReadyForBorrow"/>
             <column name="comments" value=""/>
             <column name="bibliograph_id" value="1"/>
        </insert>    
@@ -41,7 +41,7 @@
         <insert tableName="T_ITEM">
             <column name="id" value="2"/>
             <column name="barcode" value="3711002"/>
-            <column name="status" value="0"/>
+            <column name="status" value="ReadyForBorrow"/>
             <column name="comments" value=""/>
             <column name="bibliograph_id" value="2"/>
        </insert>    
@@ -49,7 +49,7 @@
         <insert tableName="T_ITEM">
             <column name="id" value="3"/>
             <column name="barcode" value="3711003"/>
-            <column name="status" value="0"/>
+            <column name="status" value="ReadyForBorrow"/>
             <column name="comments" value=""/>
             <column name="bibliograph_id" value="3"/>
        </insert>            
