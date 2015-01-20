@@ -18,7 +18,7 @@ var borrowHistoryController = booksApp.controller('BorrowHistoryController', fun
         
         
         $scope.selectedReader = ""; 
-        $scope.selectedReaderList="";
+//$scope.selectedReaderList="";
 
         $scope.selectedItem="";
         $scope.foundItemList=[];
@@ -48,7 +48,10 @@ var borrowHistoryController = booksApp.controller('BorrowHistoryController', fun
 
        
         $scope.clear = function () {
-            $scope.borrowHistory = {borrowDate: null, returnDate: null, cleared: null, comments: null, id: null};
+            //$scope.borrowHistory = {borrowDate: null, returnDate: null, cleared: null, comments: null, id: null};
+        	$scope.selectedReader='';
+        	$scope.checkedOutItemList=[];
+        	
         };
         
         /* Search Reader Card by barcode */
