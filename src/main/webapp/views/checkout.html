@@ -5,11 +5,11 @@
 		<fieldset>
 		
 		<!-- Form Name -->
-		<legend>Reader Info</legend>
+		<legend translate="reader.reader">Reader</legend>
 		
 		<!-- Barcode -->
 		<div class="form-group">
-		  <label class="col-md-4 control-label" for="readerBarcode">Card Barcode</label>  
+		  <label class="col-md-4 control-label" for="readerBarcode" translate="readerCard.cardBarcode">Card Barcode</label>  
 		  <div class="col-md-4">
 		  	<input id="readerBarcode" type="text" placeholder="" class="form-control input-md" ng-model="readerBarcode" ng-enter="getReadercardByBarcode();">
 		  </div>
@@ -17,7 +17,7 @@
 
 		<!-- Name -->
 		<div class="form-group">
-		  <label class="col-md-4 control-label" for="readerName">Name</label>  
+		  <label class="col-md-4 control-label" for="readerName" translate="reader.Name">Name</label>  
 		  <div class="col-md-4">
 <!-- 		  	<input id="readerName" type="text" placeholder="" class="form-control input-md" ng-model="readerName" ng-enter="getReaderByName();"> -->
 		  		<angucomplete-alt id="readerName"
@@ -34,7 +34,7 @@
 
 		<!-- Home Phone -->
 		<div class="form-group">
-		  <label class="col-md-4 control-label" for="readerHomePhone">Home Phone</label>  
+		  <label class="col-md-4 control-label" for="readerHomePhone" translate="reader.HomePhone">Home Phone</label>  
 		  <div class="col-md-4">
 <!-- 		  	<input id="readerHomePhone" type="text" placeholder="" class="form-control input-md" ng-model="readerHomePhone" ng-enter="getReaderByHomePhone();"> -->
 		<angucomplete-alt id="readerHomePhone"
@@ -50,7 +50,7 @@
 
 		<!-- Cell Phone -->
 		<div class="form-group">
-		  <label class="col-md-4 control-label" for="readerMobilePhone">Mobile Phone</label>  
+		  <label class="col-md-4 control-label" for="readerMobilePhone" translate="reader.MobilePhone">Mobile Phone</label>  
 		  <div class="col-md-4">
 		  	<angucomplete-alt id="readerMobilePhone"
               placeholder="Search Reader by Mobile Phone #"
@@ -94,7 +94,8 @@
                         <button type="submit"
                                 ng-click="selectedReader=''"
                                 class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove-circle"></span> Delete
+                            <span class="glyphicon glyphicon-remove-circle"></span> 
+                            <lable translate="global.menu.cancel">Cancel</lable>
                         </button>
                     </td>
                 </tr>
@@ -106,12 +107,12 @@
 		</fieldset>
 		
 		<fieldset ng-show="selectedReader!=''">
-		 <legend> Bibliography Items</legend>
+		 <legend translate="item.item"> Bibliography Items</legend>
 
 		
 		<!-- Item Barcode -->
 		<div class="form-group">
-		  <label class="col-md-4 control-label" for="itemBarcode">Item Barcode</label>  
+		  <label class="col-md-4 control-label" for="itemBarcode" translate="item.barcode">Item Barcode</label>  
 		  <div class="col-md-4">
 		  	<input id="itemBarcode" type="text" placeholder="Scan Item Barcode" class="form-control input-md" ng-model="itemBarcode" ng-enter="getItemByBarcode();">
 		  </div>
@@ -119,7 +120,7 @@
 		
 		<!-- Item Call Number -->
 		<div class="form-group">
-		  <label class="col-md-4 control-label" for="itemCallNumber">Item Call Number</label>  
+		  <label class="col-md-4 control-label" for="itemCallNumber" translate="bibliograph.callNumber">Item Call Number</label>  
 		  <div class="col-md-4">
 		 	 <input id="itemCallNumber" type="text" placeholder="Input Item Call Number" class="form-control input-md" ng-model="itemCallNumber" ng-enter="getItemByCallNumber();" ng-dblclick="getItemByCallNumber();">
 				
@@ -127,7 +128,7 @@
 		</div>
 
 		<div class="form-group">
-		  <label class="col-md-4 control-label" for="itemTitle">Item Title</label>  
+		  <label class="col-md-4 control-label" for="itemTitle" translate="bibliograph.title">Item Title</label>  
 		  <div class="col-md-4">
 		 	 <input id="itemTitle" type="text" placeholder="Input Item Title" class="form-control input-md" ng-model="itemTitle" ng-enter="getItemByTitle();" ng-dblclick="getItemByTitle();">
 		  </div>
@@ -200,8 +201,8 @@
 	    </thead>
 	    
 	    <tbody ng-repeat="item in foundItemList">
-	       <tr>
-	         <td><input type="checkbox" ng-model="selectedItemsId[$index]" ></td>
+	       <tr ng-class="{danger: item.status != 'ReadyForBorrow'}">
+	         <td><input type="checkbox" ng-model="selectedItemsId[$index]" ng-show="item.status=='ReadyForBorrow'"></td>
 	         <td>{{item.barcode}}</td>
 	          <td>{{item.bibliograph.title}}</td>
 			  <td>{{item.bibliograph.callNumber}}</td>

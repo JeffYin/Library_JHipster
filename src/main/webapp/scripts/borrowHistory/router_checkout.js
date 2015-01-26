@@ -3,8 +3,8 @@
 booksApp
     .config(function ($routeProvider, $httpProvider, $translateProvider, USER_ROLES) {
             $routeProvider
-                .when('/borrowHistory', {
-                    templateUrl: 'views/borrowHistorys.html',
+                .when('/checkout', {
+                    templateUrl: 'views/checkout.html',
                     controller: 'BorrowHistoryController',
                     resolve:{
                         resolvedBorrowHistory: ['BorrowHistory', function (BorrowHistory) {

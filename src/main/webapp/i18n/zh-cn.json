@@ -365,6 +365,8 @@
         "createOrEditBibliograph": "书目编辑修改"
     },
     "item": {
+    	"item":"图书资料",
+    	"barcode":"图书条码",
         "Status": "状态",
         "ReadyForBorrow": "书架上",
         "Lost": "丢失",
@@ -372,7 +374,7 @@
         "Borrowed": "已借出"
     },
     "reader": {
-        "reader": "读者",
+        "reader": "借阅者",
         "PermanentNo": "读者编号",
         "Name": "姓名",
         "HomePhone": "家庭电话",
@@ -383,8 +385,12 @@
         "createNewReader": "增加读者",
         "createOrEditReader": "读者信息编辑修改"
     },
+    
+    "readerCard":{
+    	"cardBarcode": "借书卡条码"
+    },
     "borrowHistory": {
         "returnDate": "归还日期"
     },
-    "footer": "这里是页尾"
+    "footer": "页尾"
 }
