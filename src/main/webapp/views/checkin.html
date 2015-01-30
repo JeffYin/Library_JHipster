@@ -1,0 +1,129 @@
+<div>
+
+    <div>
+	    <form class="form-horizontal">
+		
+		<fieldset >
+		 <legend translate="item.item"> Bibliography Items</legend>
+
+		
+		<!-- Item Barcode -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="itemBarcode" translate="item.barcode">Item Barcode</label>  
+		  <div class="col-md-4">
+		  	<input id="itemBarcode" type="text" placeholder="Scan Item Barcode" class="form-control input-md" ng-model="itemBarcode" ng-enter="getItemByBarcode();">
+		  </div>
+		</div>
+		
+		<!-- Item Call Number -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="itemCallNumber" translate="bibliograph.callNumber">Item Call Number</label>  
+		  <div class="col-md-4">
+		 	 <input id="itemCallNumber" type="text" placeholder="Input Item Call Number" class="form-control input-md" ng-model="itemCallNumber" ng-enter="getItemByCallNumber();" ng-dblclick="getItemByCallNumber();">
+				
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="itemTitle" translate="bibliograph.title">Item Title</label>  
+		  <div class="col-md-4">
+		 	 <input id="itemTitle" type="text" placeholder="Input Item Title" class="form-control input-md" ng-model="itemTitle" ng-enter="getItemByTitle();" ng-dblclick="getItemByTitle();">
+		  </div>
+		</div>
+		
+		</fieldset>
+		</form>
+    
+    </div>
+    
+    <div class="table-responsive" ng-show="checkedOutItemList!=''">
+	  <table class="table">
+	    <thead>
+	      	<th translate="global.menu.barcode">Barcode</th>
+		    <th translate="bibliograph.title">Title</th>
+		    <th translate="bibliograph.callNumber">CallNumber</th>
+		    <th translate="bibliograph.author">Author</th>
+		    <th translate="bibliograph.publisher">Publisher</th>
+		     <th translate="borrowHistory.returnDate">Return Date</th>
+		    <th></th>
+	    </thead>
+	    
+	    <tbody ng-repeat="item in checkedOutItemList">
+	       <tr>
+	          <td>{{item.barcode}}</td>
+	          <td>{{item.bibliograph.title}}</td>
+			  <td>{{item.bibliograph.callNumber}}</td>
+			  <td>{{item.bibliograph.author}}</td>
+			  <td>{{item.bibliograph.publisher}}</td>
+			   <td>{{item.bibliograph.dueDays|returnDate}}</td>
+			  <td>
+			   <button type="submit"
+                                ng-click="deleteSelectedItem(item.id)"
+                                class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span> Delete
+                        </button>
+			  </td>
+	       </tr>
+	    </tbody>
+	  </table>
+	  
+	     <div class="btn-group">
+	      <button type="button" class="btn btn-primary" ng-click="checkout()">
+	         <span class="glyphicon glyphicon-ok"></span><label translate="global.menu.done">Done</label> 
+	      </button>
+	      
+	      <button type="button" class="btn btn-default" ng-click="hideItemPopupWindow()">
+	          <span class="glyphicon glyphicon-remove"></span> <label translate="global.menu.cancel">Cancel</label> 
+	      </button>
+	</div>  
+	</div>
+	
+
+
+	   
+	   		
+   <!-- 	-->	    
+	 <modal title="Item List" visible="foundMoreItems">
+	 <div class="table-responsive">
+	  <table class="table">
+	    <thead>
+	      	<th></th>
+	      	<th translate="global.menu.barcode">Barcode</th>
+		    <th translate="bibliograph.title">Title</th>
+		    <th translate="bibliograph.callNumber">CallNumber</th>
+		    <th translate="bibliograph.author">Author</th>
+		    <th translate="bibliograph.publisher">Publisher</th>
+		    <th translate="item.Status">Status</th>
+		   
+	    </thead>
+	    
+	    <tbody ng-repeat="item in foundItemList">
+	       <tr ng-class="{danger: item.status != 'ReadyForBorrow'}">
+	         <td><input type="checkbox" ng-model="selectedItemsId[$index]" ng-show="item.status=='ReadyForBorrow'"></td>
+	         <td>{{item.barcode}}</td>
+	          <td>{{item.bibliograph.title}}</td>
+			  <td>{{item.bibliograph.callNumber}}</td>
+			  <td>{{item.bibliograph.author}}</td>
+			  <td>{{item.bibliograph.publisher}}</td>
+			  <td translate="item.{{item.status}}">{{item.status}}</td>
+			 
+	       </tr>
+	    </tbody>
+	  </table>
+	</div>
+	
+	 
+	   <div class="btn-group">
+	      <button type="button" class="btn btn-primary" ng-click="addItemsFromPopupWindow()">
+	         <span class="glyphicon glyphicon-ok"></span><label translate="global.menu.done">Done</label> 
+	      </button>
+	      
+	      <button type="button" class="btn btn-default" ng-click="hideItemPopupWindow()">
+	          <span class="glyphicon glyphicon-remove"></span> <label translate="global.menu.cancel">Cancel</label> 
+	      </button>
+	   </div>   
+     </modal>
+
+</div>
+
+
