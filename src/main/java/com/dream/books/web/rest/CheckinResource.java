@@ -1,12 +1,14 @@
 package com.dream.books.web.rest;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,6 +44,7 @@ public class CheckinResource {
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
+    @Transactional
     public void checkInByItemBarcode(@RequestBody final String barcode) {
         log.debug("REST request to save Checkin : {}", barcode);
         BorrowHistory history = borrowHistoryRepository.getByItemBarcode(barcode);
@@ -55,16 +58,20 @@ public class CheckinResource {
     /**
      * POST  /rest/checkin -> Create a new borrowHistory.
      */
-    @RequestMapping(value = "/rest/checkin/id/{:id}", params={"callNumber"},
+    @RequestMapping(value = "/rest/checkin/id",
     		method = RequestMethod.PUT,
     		produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public void checkInById(@PathVariable Long id) {
-    	log.debug("REST request to save Checkin by history Id: {}", id);
-    	BorrowHistory history = borrowHistoryRepository.getOne(id);
+    @Transactional
+    public void checkInById(@RequestBody List<Long> ids) {
+    	log.debug("REST request to save Checkin by history Id: {}", ids);
     	
-    	if (history!=null) {
-    		checkin(history);
+    	for (Long id:ids) {
+	    	BorrowHistory history = borrowHistoryRepository.getOne(id);
+	    	
+	    	if (history!=null) {
+	    		checkin(history);
+	    	}
     	}
     	
     }

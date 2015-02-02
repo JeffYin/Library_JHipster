@@ -11,7 +11,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="itemBarcode" translate="item.barcode">Item Barcode</label>  
 		  <div class="col-md-4">
-		  	<input id="itemBarcode" type="text" placeholder="Scan Item Barcode" class="form-control input-md" ng-model="itemBarcode" ng-enter="getItemByBarcode();">
+		  	<input id="itemBarcode" type="text" placeholder="Scan Item Barcode" class="form-control input-md" ng-model="itemBarcode" ng-enter="checkInByItemBarcode();">
 		  </div>
 		</div>
 		
@@ -27,7 +27,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label" for="itemTitle" translate="bibliograph.title">Item Title</label>  
 		  <div class="col-md-4">
-		 	 <input id="itemTitle" type="text" placeholder="Input Item Title" class="form-control input-md" ng-model="itemTitle" ng-enter="getItemByTitle();" ng-dblclick="getItemByTitle();">
+		 	 <input id="itemTitle" type="text" placeholder="Input Item Title" class="form-control input-md" ng-model="itemTitle" ng-enter="checkInByTitle();" ng-dblclick="checkInByTitle();">
 		  </div>
 		</div>
 		
@@ -83,7 +83,7 @@
 	   
 	   		
    <!-- 	-->	    
-	 <modal title="Item List" visible="foundMoreItems">
+	 <modal title="Borrowed Item List" visible="foundMoreItems">
 	 <div class="table-responsive">
 	  <table class="table">
 	    <thead>
@@ -92,20 +92,20 @@
 		    <th translate="bibliograph.title">Title</th>
 		    <th translate="bibliograph.callNumber">CallNumber</th>
 		    <th translate="bibliograph.author">Author</th>
-		    <th translate="bibliograph.publisher">Publisher</th>
-		    <th translate="item.Status">Status</th>
+		    <th translate="borrowHistory.borrowedDate">Borrowed Date</th>
+		    <th translate="reader.reader">Reader</th>
 		   
 	    </thead>
 	    
-	    <tbody ng-repeat="item in foundItemList">
-	       <tr ng-class="{danger: item.status != 'ReadyForBorrow'}">
-	         <td><input type="checkbox" ng-model="selectedItemsId[$index]" ng-show="item.status=='ReadyForBorrow'"></td>
-	         <td>{{item.barcode}}</td>
-	          <td>{{item.bibliograph.title}}</td>
-			  <td>{{item.bibliograph.callNumber}}</td>
-			  <td>{{item.bibliograph.author}}</td>
-			  <td>{{item.bibliograph.publisher}}</td>
-			  <td translate="item.{{item.status}}">{{item.status}}</td>
+	    <tbody ng-repeat="history in foundItemList">
+	       <tr>
+	         <td><input type="checkbox" ng-model="selectedItemsId[$index]"></td>
+	         <td>{{history.item.barcode}}</td>
+	          <td>{{history.item.bibliograph.title}}</td>
+			  <td>{{history.item.bibliograph.callNumber}}</td>
+			  <td>{{history.item.bibliograph.author}}</td>
+			  <td>{{history.borrowDate}}</td>
+			  <td>{{history.reader.name}}</td>
 			 
 	       </tr>
 	    </tbody>
@@ -114,7 +114,7 @@
 	
 	 
 	   <div class="btn-group">
-	      <button type="button" class="btn btn-primary" ng-click="addItemsFromPopupWindow()">
+	      <button type="button" class="btn btn-primary" ng-click="checkinItem()">
 	         <span class="glyphicon glyphicon-ok"></span><label translate="global.menu.done">Done</label> 
 	      </button>
 	      

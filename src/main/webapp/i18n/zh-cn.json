@@ -390,7 +390,8 @@
     	"cardBarcode": "借书卡条码"
     },
     "borrowHistory": {
-        "returnDate": "归还日期"
+       "borrowedDate":"借阅日期",	
+       "returnDate": "归还日期"
     },
     "footer": "页尾"
 }

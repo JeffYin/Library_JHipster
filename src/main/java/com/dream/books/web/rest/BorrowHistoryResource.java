@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
@@ -73,37 +74,6 @@ public class BorrowHistoryResource {
         	borrowHistoryRepository.save(history);
         }
         
-        /*
-        try {
-			JSONObject jsonObject = new JSONObject(borrowHistory);
-			Long readerId = new Long((Integer)jsonObject.get("readerId"));
-			Reader reader = new Reader(); 
-			reader.setId(readerId);
-			
-			JSONArray itemIds = (JSONArray) jsonObject.get("itemIds"); 
-			for (int i=0; i<itemIds.length();i++) {
-			   Long itemId = new Long((Integer)itemIds.get(0));
-			   BorrowHistory history = new BorrowHistory();
-			   
-			   Item item = new Item();
-			   item.setId(itemId);
-			   
-			   history.setReader(reader);
-			   history.setItem(item);
-			   
-			   DateTime currentTime = DateTime.now();
-			   history.setBorrowDate(DateTime.now());
-			   
-			   //TODO: set the return Date. 
-			   history.setReturnDate(currentTime.plusDays(XXX));
-			   
-			   
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} 
-        */
-//        borrowHistoryRepository.save(borrowHistory);
     }
 
     /**
@@ -132,6 +102,30 @@ public class BorrowHistoryResource {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(borrowHistory, HttpStatus.OK);
+    }
+    
+    /**
+     * GET  /rest/items?callNumber=xxxx -> get all the bibliographs including the callNumber.
+     */
+    @RequestMapping(value = "/rest/borrowHistorys", params={"callNumber"},
+    		method = RequestMethod.GET,
+    		produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<BorrowHistory> getByCallNumber(@RequestParam String callNumber) {
+    	log.debug("REST request to get all Bibliographs that include the callNumber");
+    	return borrowHistoryRepository.getByCallNumberLike("%"+callNumber+"%");
+    }
+
+    /**
+     * GET  /rest/items?title=xxxx -> get all the bibliographs including the callNumber.
+     */
+    @RequestMapping(value = "/rest/borrowHistorys", params={"title"},
+    		method = RequestMethod.GET,
+    		produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<BorrowHistory> getByTitle(@RequestParam String title) {
+    	log.debug("REST request to get all Bibliographs which title includes the given value.");
+    	return borrowHistoryRepository.getByTitleLike("%"+title+"%");
     }
 
     /**
