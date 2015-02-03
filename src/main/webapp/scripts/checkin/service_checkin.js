@@ -7,15 +7,15 @@ booksApp.factory('CheckIn', function ($resource) {
 		 }),
 		 
 		 callNumber: $resource('app/rest/checkin/callNumber', {}, {
-			  'update': {method:'PUT'}
+			  'update': {method:'PUT',isArray:true}
 		 }),
 
 		 id: $resource('app/rest/checkin/id', {}, {
-			 'update': {method:'PUT'}
+			 'update': {method:'PUT',isArray:true}
 		 }),
 		  
 		 title: $resource('app/rest/checkin/title', {}, {
-			  'update': {method:'PUT'}
+			  'update': {method:'PUT',isArray:true}
 		 })
 		 
 	 }

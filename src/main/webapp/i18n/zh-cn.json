@@ -31,7 +31,8 @@
             "cancel": "取消",
             "barcode": "条码",
             "done": "完成",
-            "close": "关闭"
+            "close": "关闭",
+            "clear": "清空"
         },
         "form": {
             "username": "帐号",

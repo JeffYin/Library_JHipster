@@ -3,32 +3,51 @@
 var checkinController = booksApp.controller('CheckinController', function ($scope, CheckIn, BorrowHistory,$timeout) {
 	$scope.selectedItemsId={};
 	
+	//The ItemList in the main checkin page. 
+    $scope.checkedInHistoryList=[];
+    
 	 $scope.checkInByItemBarcode = function() {
-  	   CheckIn.barcode.update($scope.itemBarcode, function(item) {
-     	    	$scope.itemBarcode="";
+  	   CheckIn.barcode.update($scope.itemBarcode, function(history) {
+  		   var historyList=[];
+  		   historyList.push(history);
+  		   mergeItemArray($scope.checkedInHistoryList,historyList)
+     	   $scope.itemBarcode="";
 		});
      };      
 
+     /*
      $scope.checkInByItemCallNumber = function() {
-    	 CheckIn.callNumber.update($scope.callNumber, function(item) {
-    		 $scope.itemBarcode="";
+    	 $scope.selectedItemsId.cl
+    	 CheckIn.callNumber.update($scope.callNumber, function(historyList) {
+    		 $scope.callNumber="";
     	 });
      };      
      
      $scope.checkInByTitle = function() {r
     	 CheckIn.title.update($scope.itemBarcode, function(item) {
-    		 $scope.itemBarcode="";
+    		 $scope.title="";
     	 });
      };      
-     
+     */
      
      /* Search BorrowHistory by Item's callNumber */
-     $scope.getItemByCallNumber = function() {
+     $scope.getHistoryByCallNumber = function() {
      	$scope.selectedItemsId=[];
-     	BorrowHistory.query({callNumber: $scope.itemCallNumber},function(items) {
-     		$scope.foundItemList = items;
-     		$scope.foundMoreItems=items.length>=1;
+     	BorrowHistory.query({callNumber: $scope.itemCallNumber},function(histories) {
+     		$scope.foundItemList = histories;
+     		$scope.foundMoreItems=histories.length>=1;
      	});
+     	$scope.itemCallNumber='';
+     };      
+
+     /* Search BorrowHistory by Item's callNumber */
+     $scope.getHistoryByTitle = function() {
+    	 $scope.selectedItemsId=[];
+    	 BorrowHistory.query({title: $scope.itemTitle},function(items) {
+    		 $scope.foundItemList = items;
+    		 $scope.foundMoreItems=items.length>=1;
+    	 });
+    	 $scope.itemTitle='';
      };      
      
      
@@ -45,13 +64,27 @@ var checkinController = booksApp.controller('CheckinController', function ($scop
              }
            });
     	 
-    	 CheckIn.id.update(selectedHistoryId, function(item) {
-    		 $scope.callNumber="";
+    	 CheckIn.id.update(selectedHistoryId, function(historyList) {
+    		 mergeItemArray($scope.checkedInHistoryList,historyList)
     	 });
     	 
+    	 
      	$scope.foundMoreItems = false;
-     }
+     };
+     
+     
+     $scope.hideItemPopupWindow = function() {
+     	$scope.foundMoreItems = false;
+     };
         
+     
+     $scope.clear = function () {
+    	 $scope.itemBarcode="";
+    	 $scope.itemCallNumber='';
+    	 $scope.itemTitle='';
+     	$scope.checkedInHistoryList=[];
+     	
+     };
     });
 
 

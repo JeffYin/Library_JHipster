@@ -1,5 +1,6 @@
 package com.dream.books.web.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -45,14 +46,14 @@ public class CheckinResource {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     @Transactional
-    public void checkInByItemBarcode(@RequestBody final String barcode) {
+    public BorrowHistory checkInByItemBarcode(@RequestBody final String barcode) {
         log.debug("REST request to save Checkin : {}", barcode);
         BorrowHistory history = borrowHistoryRepository.getByItemBarcode(barcode);
         
         if (history!=null) {
         	checkin(history);
         }
-        
+        return history;
     }
     
     /**
@@ -63,17 +64,19 @@ public class CheckinResource {
     		produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     @Transactional
-    public void checkInById(@RequestBody List<Long> ids) {
+    public List<BorrowHistory> checkInById(@RequestBody List<Long> ids) {
     	log.debug("REST request to save Checkin by history Id: {}", ids);
     	
+    	List<BorrowHistory> historyList = new ArrayList<BorrowHistory>(ids.size());
     	for (Long id:ids) {
 	    	BorrowHistory history = borrowHistoryRepository.getOne(id);
 	    	
 	    	if (history!=null) {
 	    		checkin(history);
 	    	}
+	    	historyList.add(history);
     	}
-    	
+    	return historyList;
     }
 
     //Check in the item.
