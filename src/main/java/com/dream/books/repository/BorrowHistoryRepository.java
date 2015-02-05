@@ -13,12 +13,12 @@ import com.dream.books.domain.BorrowHistory;
  */
 public interface BorrowHistoryRepository extends JpaRepository<BorrowHistory, Long> {
 
-	@Query("select history from BorrowHistory history where history.item.barcode = :barcode")
-	public BorrowHistory getByItemBarcode(@Param("barcode")  String barcode);
+	@Query("select history from BorrowHistory history where history.item.barcode = :barcode and history.cleared is false")
+	public BorrowHistory getBorrowedItemByBarcode(@Param("barcode")  String barcode);
 
-	@Query("select history from BorrowHistory history where history.item.bibliograph.callNumber like :callNumber")
-  	public List<BorrowHistory> getByCallNumberLike(@Param("callNumber")  String callNumber);
+	@Query("select history from BorrowHistory history where history.item.bibliograph.callNumber like :callNumber and history.cleared is false")
+  	public List<BorrowHistory> getBorrowedItemByCallNumberLike(@Param("callNumber")  String callNumber);
 
-   @Query("select history from BorrowHistory history where history.item.bibliograph.title like :title")
-  	public List<BorrowHistory> getByTitleLike(@Param("title")  String title);
+   @Query("select history from BorrowHistory history where history.item.bibliograph.title like :title and history.cleared is false")
+  	public List<BorrowHistory> getBorrowedItemByTitleLike(@Param("title")  String title);
 }

@@ -113,7 +113,7 @@ public class BorrowHistoryResource {
     @Timed
     public List<BorrowHistory> getByCallNumber(@RequestParam String callNumber) {
     	log.debug("REST request to get all Bibliographs that include the callNumber");
-    	return borrowHistoryRepository.getByCallNumberLike("%"+callNumber+"%");
+    	return borrowHistoryRepository.getBorrowedItemByCallNumberLike("%"+callNumber+"%");
     }
 
     /**
@@ -125,7 +125,7 @@ public class BorrowHistoryResource {
     @Timed
     public List<BorrowHistory> getByTitle(@RequestParam String title) {
     	log.debug("REST request to get all Bibliographs which title includes the given value.");
-    	return borrowHistoryRepository.getByTitleLike("%"+title+"%");
+    	return borrowHistoryRepository.getBorrowedItemByTitleLike("%"+title+"%");
     }
 
     /**

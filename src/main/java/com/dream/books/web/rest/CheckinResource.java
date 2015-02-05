@@ -48,7 +48,7 @@ public class CheckinResource {
     @Transactional
     public BorrowHistory checkInByItemBarcode(@RequestBody final String barcode) {
         log.debug("REST request to save Checkin : {}", barcode);
-        BorrowHistory history = borrowHistoryRepository.getByItemBarcode(barcode);
+        BorrowHistory history = borrowHistoryRepository.getBorrowedItemByBarcode(barcode);
         
         if (history!=null) {
         	checkin(history);
