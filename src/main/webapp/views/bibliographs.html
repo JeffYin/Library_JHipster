@@ -9,9 +9,11 @@
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form name="form" role="form" novalidate
-                      class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
+                    <form name="form" role="form" novalidate
+                      class="form form-horizontal ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
                       ng-submit="create()">
+                      
+                      <input type="hidden" class="form-control" name="id" ng-model="bibliograph.id" >
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -19,43 +21,48 @@
                         <h4 class="modal-title" id="myBibliographLabel" translate="bibliograph.createOrEditBibliograph">Create or edit a Bibliograph</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label>ID</label>
-                            <input type="text" class="form-control" name="id"
-                                   ng-model="bibliograph.id" readonly>
-                        </div>
+                            
 
                         <div class="form-group">
-                            <label translate="bibliograph.title">title</label>
-                            <input type="text" class="form-control"
-                                   ng-model="bibliograph.title">
+                            <label class="col-md-2 control-label" for="bibliograph.title" translate="bibliograph.title">title</label>
+                            <div class="col-md-8">
+                            	<input type="text" class="form-control" id="bibliograph.title" ng-model="bibliograph.title">
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label translate="bibliograph.author">author</label>
-                            <input type="text" class="form-control"
-                                   ng-model="bibliograph.author">
+                            <label class="col-md-2 control-label" for="bibliograph.author" translate="bibliograph.author">author</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control" ng-model="bibliograph.author">
+							</div>	
+							
+							 <label class="col-md-2 control-label" for="bibliograph.publisher" translate="bibliograph.publisher">publisher</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control" ng-model="bibliograph.publisher">
+							</div>	
+							
+                        </div>
+                        
+                        
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="bibliograph.callNumber" translate="bibliograph.callNumber">callNumber</label>
+                            <div class="col-md-4">
+								<input type="text" class="form-control" ng-model="bibliograph.callNumber">
+							</div>	
+							
+							<label class="col-md-2 control-label" for="bibliograph.type" translate="bibliograph.type">type</label>
+                            <div class="col-md-4">
+								<input type="number" class="form-control" ng-model="bibliograph.type">
+							</div>	
+							
                         </div>
                         <div class="form-group">
-                            <label translate="bibliograph.intro">intro</label>
-                            <input type="text" class="form-control"
-                                   ng-model="bibliograph.intro">
+                            <label class="col-md-2 control-label" for="bibliograph.dueDays" translate="bibliograph.dueDays">dueDays</label>
+                            <div class="col-md-8">
+								<input type="number" class="form-control" ng-model="bibliograph.dueDays">
+							</div>	
                         </div>
-                        <div class="form-group">
-                            <label translate="bibliograph.publisher">publisher</label>
-                            <input type="text" class="form-control"
-                                   ng-model="bibliograph.publisher">
-                        </div>
-                        <div class="form-group">
-                            <label translate="bibliograph.callNumber">callNumber</label>
-                            <input type="text" class="form-control"
-                                   ng-model="bibliograph.callNumber">
-                        </div>
-                        <div class="form-group">
-                            <label translate="bibliograph.dueDays">dueDays</label>
-                            <input type="number" class="form-control"
-                                   ng-model="bibliograph.dueDays">
-                        </div>
-                        <!-- Used for future -->
+						
+						 <!-- Used for future -->
                         <!--  
                         <div class="form-group">
                             <label translate="bibliograph.imageUrl">imageUrl</label>
@@ -63,18 +70,30 @@
                                    ng-model="bibliograph.imageUrl">
                         </div>
                        -->
-                       
-                        <div class="form-group">
-                            <label translate="bibliograph.type">type</label>
-                            <input type="number" class="form-control"
-                                   ng-model="bibliograph.type">
-                        </div>
+					   
+						
 
                          <div class="form-group">
-                             <label translate="bibliograph.tag">tag</label>
-                             <select class="form-control" multiple ng-model="bibliograph.tags" ng-options="tag as tag.lable for tag in tags track by tag.id">
-                             </select>
+                             <label class="col-md-2 control-label" for="bibliograph.tag" translate="bibliograph.tag">tag</label>
+                             <div class="col-md-8">
+                                <!-- 
+								<select class="form-control" multiple ng-model="bibliograph.tags" ng-options="tag as tag.lable for tag in tags track by tag.id">
+								</select>
+								--> 
+								 
+								<div class="btn-group" data-toggle="buttons-checkbox" ng-repeat="tag in tags">
+<!-- 								  <button type="button" class="btn" ng-class="{'btn-success':containTags(tag)}">{{tag.lable}}</button> -->
+									<input type="checkbox" value="{{tag.id}}" ng-checked="bibliograph.tags.indexOf(tag) > -1" />{{tag.lable}}
+								</div>
+							</div>	
                          </div>
+                         
+                          <div class="form-group">
+                            <label class="col-md-2 control-label" for="bibliograph.intro" translate="bibliograph.intro">intro</label>
+                            <div class="col-md-8">
+								<input type="text" class="form-control" ng-model="bibliograph.intro">
+							</div>	
+                     	</div>
 
                     </div>
                     <div class="modal-footer">
@@ -85,6 +104,9 @@
                             <span class="glyphicon glyphicon-save"></span> <label translate="global.menu.save">Save</label> 
                         </button>
                     </div>
+                    
+                   
+                        
                 </form>
             </div>
         </div>
@@ -116,6 +138,7 @@
                     <td>{{bibliograph.dueDays}}</td>
                     <td>{{bibliograph.type}}</td>
                     <td>
+                      <div>
                         <button type="submit"
                                 ng-click="update(bibliograph.id)"
                                 class="btn btn-default">
@@ -126,6 +149,7 @@
                                 class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove-circle"></span> <label translate="global.menu.delete">Delete</label>
                         </button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
